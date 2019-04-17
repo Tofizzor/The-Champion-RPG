@@ -13,10 +13,16 @@ public class BattleStateMachine : MonoBehaviour
 
     public PerformAction battleStates;
 
+    public List<HandleTurn> PerformList = new List<HandleTurn>();
+    public List<GameObject> HerosInBattle = new List<GameObject>();
+    public List<GameObject> EnemysInBattle = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
         battleStates = PerformAction.WAIT;
+        EnemysInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        HerosInBattle.AddRange(GameObject.FindGameObjectsWithTag("Player"));
     }
 
     // Update is called once per frame
@@ -26,6 +32,10 @@ public class BattleStateMachine : MonoBehaviour
         switch (battleStates)
         {
             case (PerformAction.WAIT):
+                if(PerformList.Count > 0)
+                {
+                    battleStates = PerformAction.TAKEACTION;
+                }
                 break;
 
             case (PerformAction.TAKEACTION):
@@ -35,5 +45,10 @@ public class BattleStateMachine : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void CollectActions(HandleTurn input)
+    {
+        PerformList.Add(input);
     }
 }

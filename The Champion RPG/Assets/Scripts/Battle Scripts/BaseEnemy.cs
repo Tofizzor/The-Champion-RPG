@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+[System.Serializable]
+public class BaseEnemy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Enemy Stats")]
+    public string enemyName;
+    public int enemyHP;
+    public int enemyCurHP;
+    public int enemyLevel;
+    public int Fighting;
+    public int Strength;
+    public int Agility;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
