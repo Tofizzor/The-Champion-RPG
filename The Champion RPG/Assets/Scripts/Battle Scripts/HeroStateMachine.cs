@@ -6,7 +6,9 @@ using UnityEngine.UI;
 namespace Battle{
 public class HeroStateMachine : MonoBehaviour
 {
-    public enum TurnState
+        private BattleStateMachine BSM;
+        public BaseHero player;
+        public enum TurnState
     {
         PROCESSING,
         ADDTOLIST,
@@ -24,8 +26,12 @@ public class HeroStateMachine : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        currentState = TurnState.PROCESSING;
+    {   
+            //how fast does the progress bar charge
+            curCooldown = Random.Range(0, 2.5f);
+
+            BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
+            currentState = TurnState.PROCESSING;
     }
 
     // Update is called once per frame
@@ -38,12 +44,11 @@ public class HeroStateMachine : MonoBehaviour
                 break;
 
             case (TurnState.ADDTOLIST):
+                    BSM.HerosToManage.Add(this.gameObject);
+                    currentState = TurnState.WAITING;
                 break;
 
             case (TurnState.WAITING):
-                break;
-
-            case (TurnState.SELECTING):
                 break;
 
             case (TurnState.ACTION):

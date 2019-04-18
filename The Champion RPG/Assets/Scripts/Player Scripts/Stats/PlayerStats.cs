@@ -44,7 +44,6 @@ namespace Stats
             }
         }
 
-
         [Header("Player Attributes")]
         public List<PlayerAttributes> Attributes = new List<PlayerAttributes>();
 

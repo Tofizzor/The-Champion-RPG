@@ -81,25 +81,28 @@ namespace Stats
         private void TurnOnSkillIcon()
         {
             this.GetComponent<Button>().interactable = true;
-            this.transform.Find("IconParent").Find("Available").gameObject.SetActive(true);
-            this.transform.Find("IconParent").Find("Disabled").gameObject.SetActive(false);
-            this.transform.Find("IconParent").Find("Enabled").gameObject.SetActive(false);
+            var colors = GetComponent<Button>().colors;
+            colors.normalColor = new Color32(3, 220, 0, 255);
+            this.GetComponent<Button>().colors = colors;
+
         }
 
         private void TurnOffSkillIcon()
         {
             this.GetComponent<Button>().interactable = false;
-            this.transform.Find("IconParent").Find("Available").gameObject.SetActive(false);
-            this.transform.Find("IconParent").Find("Disabled").gameObject.SetActive(true);
-            this.transform.Find("IconParent").Find("Enabled").gameObject.SetActive(false);
+            var colors = GetComponent<Button>().colors;
+            colors.disabledColor = new Color32(165, 1, 1, 255);
+            this.GetComponent<Button>().colors = colors;
+
         }
 
         private void EnabledSkillIcon()
         {
             this.GetComponent<Button>().interactable = false;
-            this.transform.Find("IconParent").Find("Available").gameObject.SetActive(false);
-            this.transform.Find("IconParent").Find("Disabled").gameObject.SetActive(false);
-            this.transform.Find("IconParent").Find("Enabled").gameObject.SetActive(true);
+            var colors = GetComponent<Button>().colors;
+            colors.disabledColor = new Color32(80, 120, 255, 200);
+            this.GetComponent<Button>().colors = colors;
+
 
         }
 

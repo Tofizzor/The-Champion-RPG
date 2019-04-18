@@ -6,7 +6,7 @@ namespace Battle
 {
     public class EnemyStateMachine : MonoBehaviour
     {
-        public BattleStateMachine BSM;
+        private BattleStateMachine BSM;
         public BaseEnemy enemy;
         public enum TurnState
         {

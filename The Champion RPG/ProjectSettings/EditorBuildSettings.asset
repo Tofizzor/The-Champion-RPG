@@ -10,5 +10,8 @@ EditorBuildSettings:
     guid: 41850dffc5239dd488c07333b10306ae
   - enabled: 1
     path: Assets/Scenes/House.unity
-    guid: 00000000000000000000000000000000
+    guid: 23af661ac08f1fe49af7ea0dc7322dcd
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 1b7f9b18cd207e049be5ef550bd0f3fe
   m_configObjects: {}
