@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace Battle{
 public class HeroStateMachine : MonoBehaviour
-{   
+{
     public enum TurnState
     {
         PROCESSING,
@@ -18,7 +19,7 @@ public class HeroStateMachine : MonoBehaviour
     public TurnState currentState;
     //variables for progress bar
     private float curCooldown;
-    private float maxCooldown = 5f;
+    private float maxCooldown = 1f;
     public Image ProgressBar;
 
     // Start is called before the first frame update
@@ -58,9 +59,10 @@ public class HeroStateMachine : MonoBehaviour
         curCooldown = curCooldown + Time.deltaTime;
         float calcCooldown = curCooldown / maxCooldown;
         ProgressBar.transform.localScale = new Vector2(Mathf.Clamp(calcCooldown, 0, 1), ProgressBar.transform.localScale.y);
-        if(curCooldown >= maxCooldown)
+        if (curCooldown >= maxCooldown)
         {
             currentState = TurnState.ADDTOLIST;
         }
     }
+}
 }

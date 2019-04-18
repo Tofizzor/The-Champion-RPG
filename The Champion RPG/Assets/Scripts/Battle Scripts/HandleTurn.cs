@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class HandleTurn
+namespace Battle
 {
-    //attacker name
-    public string Attacker;
-    [Header("Attacker")]
-    public GameObject AttackersGameObject;
-    [Header("Defender")]
-    public GameObject AttackersTarget;
+    [System.Serializable]
+    public class HandleTurn
+    {
+        //attacker name
+        public string Attacker;
+        //enemy or player
+        public string Type;
+        [Header("Attacker")]
+        public GameObject AttackersGameObject;
+        [Header("Defender")]
+        public GameObject AttackersTarget;
 
+    }
 }

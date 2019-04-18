@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 61623854057934276, guid: abb1d19dae0f99a45b303c0fa39c2b29,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
 --- !u!1 &120608216 stripped
@@ -425,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 1764210453709240481, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1764210453709240481, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
@@ -488,6 +493,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1764671395257776038, guid: 3564b047d85e96946be63840e513375b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775984493990412667, guid: 3564b047d85e96946be63840e513375b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776355314873488787, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -840,6 +855,7 @@ MonoBehaviour:
     Strength: 1
     Agility: 1
   currentState: 0
+  attackPlayer: {fileID: 0}
 --- !u!1 &1958371695
 GameObject:
   m_ObjectHideFlags: 0
