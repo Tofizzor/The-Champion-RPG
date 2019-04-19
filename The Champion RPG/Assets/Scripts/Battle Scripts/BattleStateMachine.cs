@@ -42,14 +42,7 @@ namespace Battle
         public List<GameObject> HerosInBattle = new List<GameObject>();
         public List<GameObject> EnemysInBattle = new List<GameObject>();
 
-        //Saved information of player from previous scene
-        public Stats.PlayerStats pStats;
-        public GameStats.GameStatus gStatus;
 
-        private void Awake()
-        {
-            gStatus.onStart(pStats);
-        }
 
         // Start is called before the first frame update
         void Start()

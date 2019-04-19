@@ -7,6 +7,7 @@ namespace Battle{
 public class HeroStateMachine : MonoBehaviour
 {
         private BattleStateMachine BSM;
+        public Stats.PlayerStats pStats;
         public BaseHero player;
         public enum TurnState
     {
@@ -26,10 +27,10 @@ public class HeroStateMachine : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+            player.GetStats(pStats);
             //how fast does the progress bar charge
             curCooldown = Random.Range(0, 2.5f);
-
             BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
             currentState = TurnState.PROCESSING;
     }

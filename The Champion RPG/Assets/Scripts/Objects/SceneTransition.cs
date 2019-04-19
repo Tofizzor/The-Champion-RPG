@@ -20,12 +20,9 @@ namespace GameStats
         public GameObject fadeOutPanel;
         public float fadeWait;
 
-        public Stats.PlayerStats pStats;
-        public GameStatus gStatus;
 
         private void Awake()
         {
-            gStatus.onStart(pStats);
             if (fadeInPanel != null)
             {
                 GameObject panel = Instantiate(fadeInPanel, Vector3.zero, Quaternion.identity) as GameObject;
@@ -38,7 +35,6 @@ namespace GameStats
         {
             if (collision.CompareTag("Player") && !collision.isTrigger)
             {
-                gStatus.saveStatus(pStats);
                 playerStorage.initialValue = playerPosition;
 
                 StartCoroutine(FadeCo());

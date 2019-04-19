@@ -2,24 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle
-{
-    public class BaseHero : MonoBehaviour
+[System.Serializable]
+public class BaseHero
     {
         public string playerName;
         public int playerLevel;
         public int playerXP;
+        public int strenght;
+        public int fighting;
+        public int agility;
 
-        // Start is called before the first frame update
-        void Start()
+        public void GetStats(Stats.PlayerStats attr)
+    {
+        playerName = attr.PlayerName;
+        playerLevel = attr.PlayerLevel;
+        playerXP = attr.PlayerXP;
+        List<Stats.PlayerAttributes>.Enumerator attrib = attr.Attributes.GetEnumerator();
+        while (attrib.MoveNext())
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            if (attrib.Current.attribute.name.ToString() == "Strength")
+            {
+                strenght = attrib.Current.amount;
+                
+            }
+            if (attrib.Current.attribute.name.ToString() == "Fighting")
+            {
+                fighting = attrib.Current.amount;
+               
+            }
+            if (attrib.Current.attribute.name.ToString() == "Agility")
+            {
+                agility = attrib.Current.amount;
+                
+            }
         }
     }
-}
+
+        
+
+    }
+

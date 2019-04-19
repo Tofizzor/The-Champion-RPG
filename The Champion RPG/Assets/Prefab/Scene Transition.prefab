@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 61993217723525522}
   - component: {fileID: 114593743989212812}
   - component: {fileID: 870603631}
-  - component: {fileID: 870603632}
   m_Layer: 0
   m_Name: Scene Transition
   m_TagString: Untagged
@@ -81,7 +80,7 @@ MonoBehaviour:
     type: 3}
   fadeWait: 0.5
   pStats: {fileID: 0}
-  gStatus: {fileID: 870603632}
+  gStatus: {fileID: 0}
 --- !u!212 &870603631
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,15 +129,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &870603632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830364209335668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0c7f559b0ce4040b18d1695083c0a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
