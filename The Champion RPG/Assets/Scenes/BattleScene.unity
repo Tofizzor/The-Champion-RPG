@@ -255,66 +255,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1671026318, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: PlayerMaxHP
+      value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 61623854057934276, guid: abb1d19dae0f99a45b303c0fa39c2b29,
+    - target: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: PlayerCurHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633684633774307800, guid: abb1d19dae0f99a45b303c0fa39c2b29,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114851768064356930, guid: abb1d19dae0f99a45b303c0fa39c2b29,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 291407377, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_AnchoredPosition.x
+      value: -49.899994
       objectReference: {fileID: 0}
     - target: {fileID: 8633684633774307800, guid: abb1d19dae0f99a45b303c0fa39c2b29,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.50000095
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: ProgressBar
+      value: 
+      objectReference: {fileID: 958375769}
+    - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: player.maxStamina
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: player.curStamina
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: player.strenght
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: player.fighting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: player.agility
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
---- !u!1 &120608216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1447647693085188, guid: abb1d19dae0f99a45b303c0fa39c2b29,
-    type: 3}
-  m_PrefabInstance: {fileID: 120608215}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &120608217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120608216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69727b474397932449e833c48fc2d7aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pStats: {fileID: 120608218}
-  player:
-    playerName: 
-    playerLevel: 0
-    playerXP: 0
-    strenght: 0
-    fighting: 0
-    agility: 0
-  currentState: 0
-  ProgressBar: {fileID: 958375769}
 --- !u!114 &120608218 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29,
     type: 3}
   m_PrefabInstance: {fileID: 120608215}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120608216}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb14502be46a3b441bc64e39c5c618ce, type: 3}
@@ -617,11 +608,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 1764210453709240481, guid: 3564b047d85e96946be63840e513375b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 1760161845494008213, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -675,21 +661,6 @@ PrefabInstance:
     - target: {fileID: 1760161845494008213, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764671395257776038, guid: 3564b047d85e96946be63840e513375b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775984493990412667, guid: 3564b047d85e96946be63840e513375b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776355314873488787, guid: 3564b047d85e96946be63840e513375b,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -879,34 +850,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1900271750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1764210453709240481, guid: 3564b047d85e96946be63840e513375b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1250702558}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1900271751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900271750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5a226517051ca48957b975b760a908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy:
-    enemyName: Enemy
-    enemyHP: 10
-    enemyCurHP: 10
-    enemyLevel: 1
-    Fighting: 1
-    Strength: 1
-    Agility: 1
-  currentState: 0
-  attackPlayer: {fileID: 0}
 --- !u!1001 &2105127232
 PrefabInstance:
   m_ObjectHideFlags: 0

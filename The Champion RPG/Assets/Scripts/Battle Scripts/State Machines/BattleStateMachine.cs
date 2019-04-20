@@ -81,7 +81,9 @@ namespace Battle
 
                     if (PerformList[0].Type == "Player")
                     {
-                        Debug.Log("bam");
+                        HeroStateMachine HSM = performer.GetComponent<HeroStateMachine>();
+                        HSM.EnemyToAttack = PerformList[0].AttackersTarget;
+                        HSM.currentState = HeroStateMachine.TurnState.ACTION;
                     }
                     battleStates = PerformAction.PERFORMACTION;
                     break;

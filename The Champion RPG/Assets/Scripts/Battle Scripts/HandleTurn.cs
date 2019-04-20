@@ -16,5 +16,8 @@ namespace Battle
         [Header("Defender")]
         public GameObject AttackersTarget;
 
+        //call an attack that can be performed
+        public BaseAttack choosenAttack;
+
     }
 }

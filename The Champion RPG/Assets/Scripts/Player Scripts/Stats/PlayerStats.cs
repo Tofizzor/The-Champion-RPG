@@ -8,7 +8,8 @@ namespace Stats
     {
         [Header("Player Stats")]
         public string PlayerName;
-        public int PlayerHP = 50;
+        public int PlayerMaxHP = 50;
+        public int PlayerCurHP;
 
         //assign listener for player XP
         [SerializeField]

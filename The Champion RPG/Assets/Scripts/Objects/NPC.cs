@@ -43,6 +43,7 @@ public class NPC : Interactable
             }
             else
             {
+
                 RepeatDialog();
                 dialogText.text = metDialog;
             }

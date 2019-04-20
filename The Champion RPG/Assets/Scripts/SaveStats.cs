@@ -42,7 +42,8 @@ public class SaveStats : MonoBehaviour
         pStats.PlayerName = PlayerPrefs.GetString("name", pStats.PlayerName);
         pStats.PlayerLevel = PlayerPrefs.GetInt("level", pStats.PlayerLevel);
         pStats.PlayerXP = PlayerPrefs.GetInt("xp", pStats.PlayerXP);
-        pStats.PlayerHP = PlayerPrefs.GetInt("hp", pStats.PlayerHP);
+        pStats.PlayerMaxHP = PlayerPrefs.GetInt("hp", pStats.PlayerMaxHP);
+        pStats.PlayerCurHP = PlayerPrefs.GetInt("crhp", pStats.PlayerCurHP);
         //Delete saved files
         PlayerPrefs.DeleteAll();
         pStats.PlayerSkills = SaveSkills;
@@ -55,7 +56,8 @@ public class SaveStats : MonoBehaviour
         PlayerPrefs.SetString("name", pStats.PlayerName);
         PlayerPrefs.SetInt("level", pStats.PlayerLevel);
         PlayerPrefs.SetInt("xp", pStats.PlayerXP);
-        PlayerPrefs.SetInt("hp", pStats.PlayerHP);
+        PlayerPrefs.SetInt("hp", pStats.PlayerMaxHP);
+        PlayerPrefs.SetInt("crhp", pStats.PlayerCurHP);
         //Collect player learned skills and attributes
         SaveSkills = pStats.PlayerSkills;
         restart = false;

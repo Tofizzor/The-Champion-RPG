@@ -23,12 +23,12 @@ namespace Battle
         private float maxCooldown = 1f;
 
         //variable for enemy start location
-        private Vector3 startPosition;
+        private Vector2 startPosition;
 
         //Time for action variables
         private bool actionStarted = false;
         public GameObject attackPlayer;
-        private float animSpeed = 3f;
+        private float animSpeed = 10f;
 
         // Start is called before the first frame update
         void Start()
@@ -76,7 +76,7 @@ namespace Battle
         void ChooseAction()
         {
             HandleTurn myAttack = new HandleTurn();
-            myAttack.Attacker = enemy.enemyName;
+            myAttack.Attacker = enemy.userName;
             myAttack.Type = "Enemy";
             myAttack.AttackersGameObject = this.gameObject;
             myAttack.AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
@@ -92,7 +92,7 @@ namespace Battle
             actionStarted = true;
 
             //enemy movement to the player
-            Vector3 playerPosition = new Vector3(attackPlayer.transform.position.x + 1.5f, attackPlayer.transform.position.y, attackPlayer.transform.position.z);
+            Vector3 playerPosition = new Vector2(attackPlayer.transform.position.x + 1.5f, attackPlayer.transform.position.y);
             while (MoveToEnemy(playerPosition))
             {
                 yield return null;
