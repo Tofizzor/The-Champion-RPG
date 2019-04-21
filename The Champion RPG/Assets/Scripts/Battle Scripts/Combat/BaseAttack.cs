@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Battle
 {
+    [CreateAssetMenu (menuName = "Player/Create Skill/Attack")]
     [System.Serializable]
-    public class BaseAttack
+    public class BaseAttack : Stats.Skills
     {
+        [Header("Battle Stats")]
         //name of the attack
         public string attackName;
 

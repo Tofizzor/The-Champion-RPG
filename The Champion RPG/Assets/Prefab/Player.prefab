@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -49.9, y: -45.3}
+  m_AnchoredPosition: {x: -49.899994, y: -25.900024}
   m_SizeDelta: {x: 7.4, y: -223.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &22515354
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c6a665dd517574c879739091aaff09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: f9a5387d21acd0d489bd43f8f150bbb7, type: 2}
+  skill: {fileID: 11400000, guid: ee4072f0b9ff18e4da08aed0c70782bc, type: 2}
   skillName: {fileID: 438217721}
   skillDescription: {fileID: 0}
   skillIcon: {fileID: 0}
@@ -1080,7 +1080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -49.899994, y: -3.100006}
+  m_AnchoredPosition: {x: -49.899994, y: 9.900024}
   m_SizeDelta: {x: 7.4, y: -223.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1326450303
@@ -1371,7 +1371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1671026322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1514,7 +1514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -49.9, y: 39.1}
+  m_AnchoredPosition: {x: -49.9, y: 46.2}
   m_SizeDelta: {x: 7.4, y: -223.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2028073489
@@ -1745,7 +1745,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447647693085188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5aa1efb1adc9fcc429fb2dd2d872d8f8, type: 2}
   m_IsTrigger: 0
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447647693085188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f09562563b713841a389ff301386d3e, type: 3}
   m_Name: 
@@ -1812,11 +1812,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb14502be46a3b441bc64e39c5c618ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: Qwert
+  PlayerName: Player
   PlayerMaxHP: 50
   PlayerCurHP: 0
-  m_PlayerXP: 30
-  m_PlayerLevel: 2
+  m_PlayerXP: 5
+  m_PlayerLevel: 1
   Attributes:
   - attribute: {fileID: 11400000, guid: 120f7c76c844bc8439342e007f46a325, type: 2}
     amount: 1
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447647693085188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f239f1643360c524bab4995a0dde0ca8, type: 3}
   m_Name: 
@@ -1862,6 +1862,7 @@ MonoBehaviour:
     strenght: 0
     fighting: 0
     agility: 0
+    userSkills: []
     playerXP: 0
   currentState: 0
   ProgressBar: {fileID: 0}
@@ -2091,7 +2092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0154185025, y: 0}
   m_AnchorMax: {x: 1, y: 0.9853532}
-  m_AnchoredPosition: {x: -194.3, y: 4}
+  m_AnchoredPosition: {x: -194.3, y: 2}
   m_SizeDelta: {x: -439.8, y: -320.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3873351098781563041
@@ -2532,7 +2533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 124.07, y: 24.022}
+  m_AnchoredPosition: {x: 124.07, y: 24.021973}
   m_SizeDelta: {x: 232.8, y: 51.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8633684632273195567
@@ -2694,7 +2695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -49.9, y: 0.50000095}
+  m_AnchoredPosition: {x: -49.899994, y: 82.5}
   m_SizeDelta: {x: 7.4, y: -223.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8633684633774307804

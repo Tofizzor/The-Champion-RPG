@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d4eb572d6b83449a3c3b238c790654, type: 3}
+  m_Script: {fileID: 11500000, guid: fe22787c694368043b6ca55b6a941bd4, type: 3}
   m_Name: Jab
   m_EditorClassIdentifier: 
   Description: 
   Icon: {fileID: 0}
   LevelNeeded: 1
-  XPNeeded: 20
+  XPNeeded: 25
   AffectedAttributes:
   - attribute: {fileID: 11400000, guid: 120f7c76c844bc8439342e007f46a325, type: 2}
     amount: 1
   - attribute: {fileID: 11400000, guid: c1f60f82c7b7e404d84c0712be16ae30, type: 2}
-    amount: 5
+    amount: 1
+  - attribute: {fileID: 11400000, guid: 4eb1f25d9f85ff643815582937ff0e02, type: 2}
+    amount: 2
+  attackName: Jab
+  attackDamage: 1
+  attackCost: 5

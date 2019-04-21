@@ -14,15 +14,19 @@ public class NPC : Interactable
     public bool playerMet;
     public string metDialog;
     public BoolValue alreadyMet;
+    public bool readyForAction = false;
 
     [Header("Fighting & XP gain")]
     public int XpGain;
     public Stats.PlayerStats pStats;
 
+    public GameObject sceneTrans;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        sceneTrans.SetActive(false);
         playerMet = alreadyMet.runTimeValue;
     }
 
@@ -39,14 +43,18 @@ public class NPC : Interactable
             {
                 GreetPlayer();
                 greetText.text = greetDialog;
-
+                readyForAction = true;
             }
             else
             {
-
                 RepeatDialog();
                 dialogText.text = metDialog;
             }
+        }
+        if (playerInRange && readyForAction == true && !greetBox.activeSelf)
+        {
+            sceneTrans.SetActive(true);
+            readyForAction = false;
         }
 
     }
@@ -93,4 +101,5 @@ public class NPC : Interactable
     {
         pStats.UpdateXP(XpGain);
     }
+
 }

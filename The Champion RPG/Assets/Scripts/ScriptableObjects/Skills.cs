@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Stats
 {
-    [CreateAssetMenu(menuName = "Player/Create Skill")]
+    //[CreateAssetMenu(menuName = "Player/Create Skill")]
     public class Skills : ScriptableObject
     {
         public string Description;

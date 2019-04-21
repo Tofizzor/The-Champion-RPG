@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Battle
 {
     public class BaseStats
@@ -14,5 +15,7 @@ namespace Battle
         public int strenght;
         public int fighting;
         public int agility;
+
+        public List<Stats.Skills> userSkills = new List<Stats.Skills>();
     }
 }

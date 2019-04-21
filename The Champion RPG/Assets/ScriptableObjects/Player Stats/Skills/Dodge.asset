@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d4eb572d6b83449a3c3b238c790654, type: 3}
+  m_Script: {fileID: 11500000, guid: 5337dc2865b7147469d388b645617e11, type: 3}
   m_Name: Dodge
   m_EditorClassIdentifier: 
-  Description: 
+  Description: Avoid oponent attack
   Icon: {fileID: 0}
   LevelNeeded: 1
   XPNeeded: 50
@@ -20,4 +20,7 @@ MonoBehaviour:
   - attribute: {fileID: 11400000, guid: 120f7c76c844bc8439342e007f46a325, type: 2}
     amount: 1
   - attribute: {fileID: 11400000, guid: 4eb1f25d9f85ff643815582937ff0e02, type: 2}
-    amount: 5
+    amount: 2
+  defenceName: Dodge
+  defenceStrength: 2
+  defenceCost: 10
