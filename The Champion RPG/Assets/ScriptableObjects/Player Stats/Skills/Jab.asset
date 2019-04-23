@@ -23,6 +23,7 @@ MonoBehaviour:
     amount: 1
   - attribute: {fileID: 11400000, guid: 4eb1f25d9f85ff643815582937ff0e02, type: 2}
     amount: 2
-  attackName: Jab
-  attackDamage: 1
-  attackCost: 5
+  skillType: Att
+  skillName: Jab
+  skillCost: 0
+  attackDamage: 2

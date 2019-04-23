@@ -21,6 +21,7 @@ MonoBehaviour:
     amount: 1
   - attribute: {fileID: 11400000, guid: c1f60f82c7b7e404d84c0712be16ae30, type: 2}
     amount: 2
-  defenceName: Block
+  skillType: Def
+  skillName: Block
+  skillCost: 0
   defenceStrength: 2
-  defenceCost: 5

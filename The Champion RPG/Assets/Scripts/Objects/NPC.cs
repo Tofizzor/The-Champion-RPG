@@ -20,13 +20,17 @@ public class NPC : Interactable
     public int XpGain;
     public Stats.PlayerStats pStats;
 
+    public bool sceneTransition;
     public GameObject sceneTrans;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        sceneTrans.SetActive(false);
+        if (sceneTransition)
+        {
+            sceneTrans.SetActive(false);
+        }
         playerMet = alreadyMet.runTimeValue;
     }
 
@@ -51,7 +55,7 @@ public class NPC : Interactable
                 dialogText.text = metDialog;
             }
         }
-        if (playerInRange && readyForAction == true && !greetBox.activeSelf)
+        if (playerInRange && readyForAction == true && !greetBox.activeSelf && sceneTransition)
         {
             sceneTrans.SetActive(true);
             readyForAction = false;

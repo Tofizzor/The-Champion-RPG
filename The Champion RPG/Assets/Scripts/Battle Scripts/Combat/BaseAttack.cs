@@ -8,12 +8,9 @@ namespace Battle
     [System.Serializable]
     public class BaseAttack : Stats.Skills
     {
-        [Header("Battle Stats")]
-        //name of the attack
-        public string attackName;
-
         //base damage
-        public int attackDamage;
-        public int attackCost;
+        public float attackDamage;
+
+
     }
 }

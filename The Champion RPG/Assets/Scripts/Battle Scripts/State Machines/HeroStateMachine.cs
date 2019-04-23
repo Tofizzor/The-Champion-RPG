@@ -2,28 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Battle{
-public class HeroStateMachine : MonoBehaviour
-{
+    public class HeroStateMachine : MonoBehaviour
+    {
         private BattleStateMachine BSM;
         public Stats.PlayerStats pStats;
         public BasePlayer player;
         public enum TurnState
-    {
-        PROCESSING,
-        ADDTOLIST,
-        WAITING,
-        SELECTING,
-        ACTION,
-        DEAD
-    }
+        {
+            PROCESSING,
+            ADDTOLIST,
+            WAITING,
+            SELECTING,
+            ACTION,
+            DEAD
+        }
 
         public TurnState currentState;
+        //bool of player to see if they are alive
+        private bool alive = true;
         //variables for progress bar
         private float curCooldown;
-        private float maxCooldown = 1f;
+        private float maxCooldown = 4f;
+        //variables for health bar
         public Image ProgressBar;
+        public Image HealthBar;
+        [Header("Defeated Player Transition")]
+        public Text defeat;
+        public Vector2 playerPosition;
+        public VectorValue playerStorage;
         //IeNumerator
         public GameObject EnemyToAttack;
         private bool actionStarted = false;
@@ -34,10 +43,13 @@ public class HeroStateMachine : MonoBehaviour
     // Start is called before the first frame update
         void Start()
     {
+            //gathers players stats into battle
             player.GetStats(pStats);
+            //set defeated state objects to false
+            defeat.gameObject.SetActive(false);
             startPosition = transform.position;
             //how fast does the progress bar charge
-            curCooldown = Random.Range(0, 2.5f);
+            curCooldown = Random.Range(0, 0.5f);
             BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
             currentState = TurnState.PROCESSING;
     }
@@ -45,6 +57,7 @@ public class HeroStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            UpgradeHealthBar();
         switch (currentState)
         {
             case (TurnState.PROCESSING):
@@ -64,6 +77,15 @@ public class HeroStateMachine : MonoBehaviour
                 break;
 
             case (TurnState.DEAD):
+                    if (!alive)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        StartCoroutine(playerDefeated());
+                        alive = false;
+                    }
                 break;
         }
     }
@@ -78,6 +100,13 @@ public class HeroStateMachine : MonoBehaviour
             currentState = TurnState.ADDTOLIST;
         }
     }
+        void UpgradeHealthBar()
+        {
+
+            float healthBar = player.CurHP / player.MaxHP;
+            HealthBar.transform.localScale = new Vector2(Mathf.Clamp(healthBar, 0, 1), ProgressBar.transform.localScale.y);
+            
+        }
 
         private IEnumerator TimeForAction()
         {
@@ -88,7 +117,7 @@ public class HeroStateMachine : MonoBehaviour
             actionStarted = true;
 
             //enemy movement to the player
-            Vector2 enemyPosition = new Vector2(EnemyToAttack.transform.position.x - 1.5f, EnemyToAttack.transform.position.y);
+            Vector2 enemyPosition = new Vector2(EnemyToAttack.transform.position.x - 1f, EnemyToAttack.transform.position.y);
             while (MoveToEnemy(enemyPosition))
             {
                 yield return null;
@@ -116,6 +145,26 @@ public class HeroStateMachine : MonoBehaviour
 
         }
 
+        private IEnumerator playerDefeated()
+        {
+            defeat.gameObject.SetActive(true);
+            //take the object from the list and hide the attack panel
+            BSM.HerosInBattle.Remove(this.gameObject);
+            BSM.HerosToManage.Remove(this.gameObject);
+            BSM.SelectPanel.SetActive(false);
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225,0,0,255);
+            //wait for a moment
+            yield return new WaitForSeconds(0.5f);
+            playerStorage.initialValue = playerPosition;
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("House");
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
+
+
+        }
+
         private bool MoveToEnemy(Vector3 distance)
         {
             return distance != (transform.position = Vector3.MoveTowards(transform.position, distance, animSpeed * Time.deltaTime));
@@ -124,6 +173,15 @@ public class HeroStateMachine : MonoBehaviour
         private bool MoveBack(Vector3 distance)
         {
             return distance != (transform.position = Vector3.MoveTowards(transform.position, distance, animSpeed * Time.deltaTime));
+        }
+
+        public void TakeDamage(float damageAmount)
+        {
+            player.CurHP -= damageAmount;
+            if(player.CurHP <= 0)
+            {
+                currentState = TurnState.DEAD;
+            }
         }
     }
 }

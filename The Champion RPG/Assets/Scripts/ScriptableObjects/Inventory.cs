@@ -7,7 +7,7 @@ public class Inventory : ScriptableObject {
 
     public Item currentItem;
     public List<Item> items = new List<Item>();
-    public int numberOfKeys;
+    public int numberOfItems;
 
     // Check if certain object is in inventory
     public bool CheckForItem(Item itm)
@@ -20,21 +20,13 @@ public class Inventory : ScriptableObject {
 
     public void AddItem(Item itemToAdd)
     {
-        // Is the item a key?.
-
-        if (itemToAdd.isKey)
-        {
-            numberOfKeys++;
-
-        }
-        else
-        {
             // If item is not already in the inventory then add it
             if (!items.Contains(itemToAdd))
             {
-                items.Add(itemToAdd);
+            numberOfItems++;
+            items.Add(itemToAdd);
+            
             }
-        }
     }
 
 }

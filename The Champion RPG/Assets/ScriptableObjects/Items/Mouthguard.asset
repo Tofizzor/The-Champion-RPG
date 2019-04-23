@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888bbfef6439752428c04dcc004316e1, type: 3}
   m_Name: Mouthguard
   m_EditorClassIdentifier: 
+  itemName: Mouthguard
   itemSprite: {fileID: 21300152, guid: 4c543e524d0054847bc148279a9ea878, type: 3}
   itemDescription: It's a mouthguard
-  isKey: 1

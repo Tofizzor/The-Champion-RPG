@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5337dc2865b7147469d388b645617e11, type: 3}
   m_Name: Dodge
   m_EditorClassIdentifier: 
-  Description: Avoid oponent attack
+  Description: Avoid opponent attack
   Icon: {fileID: 0}
   LevelNeeded: 1
   XPNeeded: 50
@@ -21,6 +21,7 @@ MonoBehaviour:
     amount: 1
   - attribute: {fileID: 11400000, guid: 4eb1f25d9f85ff643815582937ff0e02, type: 2}
     amount: 2
-  defenceName: Dodge
+  skillType: Def
+  skillName: Dodge
+  skillCost: 0
   defenceStrength: 2
-  defenceCost: 10

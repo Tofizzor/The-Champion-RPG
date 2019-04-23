@@ -17,7 +17,7 @@ namespace Battle
         public GameObject AttackersTarget;
 
         //call an attack that can be performed
-        public BaseAttack choosenAttack;
+        public Stats.Skills choosenAttack;
 
     }
 }

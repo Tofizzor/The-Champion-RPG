@@ -23,6 +23,7 @@ MonoBehaviour:
     amount: 2
   - attribute: {fileID: 11400000, guid: 4eb1f25d9f85ff643815582937ff0e02, type: 2}
     amount: 1
-  attackName: Backhand
+  skillType: Att
+  skillName: Backhand
+  skillCost: 0
   attackDamage: 2
-  attackCost: 5

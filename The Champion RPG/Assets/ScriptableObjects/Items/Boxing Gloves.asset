@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888bbfef6439752428c04dcc004316e1, type: 3}
   m_Name: Boxing Gloves
   m_EditorClassIdentifier: 
+  itemName: Boxing Gloves
   itemSprite: {fileID: 0}
-  itemDescription: Boxing Gloves
-  isKey: 0
+  itemDescription: Protective equipment for arms

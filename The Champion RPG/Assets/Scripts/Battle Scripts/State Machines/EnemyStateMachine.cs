@@ -20,7 +20,7 @@ namespace Battle
         public TurnState currentState;
         //variables for progress bar
         private float curCooldown;
-        private float maxCooldown = 1f;
+        private float maxCooldown = 2f;
 
         //variable for enemy start location
         private Vector2 startPosition;
@@ -28,7 +28,8 @@ namespace Battle
         //Time for action variables
         private bool actionStarted = false;
         public GameObject attackPlayer;
-        private float animSpeed = 10f;
+        private float skillDamage;
+        private float animSpeed = 15f;
 
         // Start is called before the first frame update
         void Start()
@@ -80,8 +81,17 @@ namespace Battle
             myAttack.Type = "Enemy";
             myAttack.AttackersGameObject = this.gameObject;
             myAttack.AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+            int num = Random.Range(0, enemy.userSkills.Count);
+            myAttack.choosenAttack = enemy.userSkills[num];
+            if(myAttack.choosenAttack.skillType == "Att")
+            {
+                BaseAttack attk = (BaseAttack)myAttack.choosenAttack;
+                skillDamage = attk.attackDamage;
+                Debug.Log(this.gameObject.name + " has chosen " + myAttack.choosenAttack.skillName + " with damage " + attk.attackDamage);
+            }
             BSM.CollectActions(myAttack);
         }
+
 
         private IEnumerator TimeForAction()
         {
@@ -92,15 +102,15 @@ namespace Battle
             actionStarted = true;
 
             //enemy movement to the player
-            Vector3 playerPosition = new Vector2(attackPlayer.transform.position.x + 1.5f, attackPlayer.transform.position.y);
+            Vector2 playerPosition = new Vector2(attackPlayer.transform.position.x + 1f, attackPlayer.transform.position.y);
             while (MoveToEnemy(playerPosition))
             {
                 yield return null;
             }
             //attack process
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
             //dealing damage
-
+            DoDamage();
             //enemy movement back to the starting position
             Vector3 firstPosition = startPosition;
             while (MoveBack(firstPosition))
@@ -128,6 +138,13 @@ namespace Battle
         private bool MoveBack(Vector3 distance)
         {
             return distance != (transform.position = Vector3.MoveTowards(transform.position, distance, animSpeed * Time.deltaTime));
+        }
+
+        void DoDamage()
+        { 
+            float dmg = enemy.strenght + skillDamage;
+            Debug.Log(dmg);
+            attackPlayer.GetComponent<HeroStateMachine>().TakeDamage(dmg);
         }
     }
 }

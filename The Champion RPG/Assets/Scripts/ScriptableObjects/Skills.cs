@@ -12,8 +12,14 @@ namespace Stats
         public int LevelNeeded;
         public int XPNeeded;
 
-
         public List<PlayerAttributes> AffectedAttributes = new List<PlayerAttributes>();
+
+        [Header("Battle Stats")]
+        //name of the attack
+        public string skillType;
+        public string skillName;
+        public float skillCost;
+
 
         //Method to set the values in the Skills UI
         public void SetValues(GameObject SkillDisplayObject, PlayerStats Player)

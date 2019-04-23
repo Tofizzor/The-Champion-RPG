@@ -8,14 +8,15 @@ namespace Battle
     {
         public string userName;
         public int Level;
-        public int MaxHP;
-        public int CurHP;
-        public int maxStamina;
-        public int curStamina;
+        public float MaxHP;
+        public float CurHP;
+        public float maxStamina;
+        public float curStamina;
         public int strenght;
         public int fighting;
         public int agility;
 
         public List<Stats.Skills> userSkills = new List<Stats.Skills>();
+        public List<BaseAttack> userAttacks = new List<BaseAttack>();
     }
 }

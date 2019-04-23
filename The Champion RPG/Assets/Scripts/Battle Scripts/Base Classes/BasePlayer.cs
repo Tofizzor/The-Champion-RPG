@@ -17,6 +17,7 @@ namespace Battle
             Level = attr.PlayerLevel;
             playerXP = attr.PlayerXP;
             userSkills = attr.PlayerSkills;
+
             List<Stats.PlayerAttributes>.Enumerator attrib = attr.Attributes.GetEnumerator();
             while (attrib.MoveNext())
             {
