@@ -25,7 +25,7 @@ namespace Battle{
         private bool alive = true;
         //variables for progress bar
         private float curCooldown;
-        private float maxCooldown = 4f;
+        private float maxCooldown = 2f;
         //variables for health bar
         public Image ProgressBar;
         public Image HealthBar;
@@ -38,6 +38,8 @@ namespace Battle{
         private bool actionStarted = false;
         private Vector2 startPosition;
         private float animSpeed = 10f;
+        //defence power
+        private float def_strength = 0;
 
 
     // Start is called before the first frame update
@@ -84,10 +86,13 @@ namespace Battle{
                     else
                     {
                         StartCoroutine(playerDefeated());
+                        BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
                         alive = false;
                     }
                 break;
         }
+            //check if player is defending
+            userDefending(def_strength);
     }
 
     void UpgradeProgressBar()
@@ -115,17 +120,24 @@ namespace Battle{
                 yield break;
             }
             actionStarted = true;
-
-            //enemy movement to the player
-            Vector2 enemyPosition = new Vector2(EnemyToAttack.transform.position.x - 1f, EnemyToAttack.transform.position.y);
+            if (BSM.PerformList[0].choosenAttack.skillType == "Att")
+            {
+                //enemy movement to the player
+                Vector2 enemyPosition = new Vector2(EnemyToAttack.transform.position.x - 1f, EnemyToAttack.transform.position.y);
             while (MoveToEnemy(enemyPosition))
             {
                 yield return null;
             }
             //attack process
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
             //dealing damage
-
+            
+                DoDamage();
+            }
+            else if(BSM.PerformList[0].choosenAttack.skillType == "Def")
+            {
+                DoDefence();
+            }
             //enemy movement back to the starting position
             Vector3 firstPosition = startPosition;
             while (MoveBack(firstPosition))
@@ -135,15 +147,21 @@ namespace Battle{
             //action is removed from BSM
             BSM.PerformList.RemoveAt(0);
             //reset BSM
-            BSM.battleStates = BattleStateMachine.PerformAction.WAIT;
-            //end the action stage
-            actionStarted = false;
+            if (BSM.battleStates != BattleStateMachine.PerformAction.WIN && BSM.battleStates != BattleStateMachine.PerformAction.LOSE)
+            {
+                BSM.battleStates = BattleStateMachine.PerformAction.WAIT;
+                //reset the enemy state
+                curCooldown = 0f;
+                currentState = TurnState.PROCESSING;
+            }
+            else
+            {
+                currentState = TurnState.PROCESSING;
+            }
+                //end the action stage
+                actionStarted = false;
 
-            //reset the enemy state
-            curCooldown = 0f;
-            currentState = TurnState.PROCESSING;
-
-        }
+            }
 
         private IEnumerator playerDefeated()
         {
@@ -152,6 +170,24 @@ namespace Battle{
             BSM.HerosInBattle.Remove(this.gameObject);
             BSM.HerosToManage.Remove(this.gameObject);
             BSM.SelectPanel.SetActive(false);
+            //check if there is player or allies in the battle
+            if (BSM.HerosInBattle.Count > 0)
+            {   
+                //go through the list
+                for (int i = 0; i < BSM.PerformList.Count; i++)
+                {   
+                    //remove the object from the perfrom list
+                    if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                    {
+                        BSM.PerformList.Remove(BSM.PerformList[i]);
+                    }
+                    //attack any random player or ally of the player
+                    if (BSM.PerformList[i].AttackersTarget == this.gameObject)
+                    {
+                        BSM.PerformList[i].AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+                    }
+                }
+            }
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225,0,0,255);
             //wait for a moment
             yield return new WaitForSeconds(0.5f);
@@ -175,12 +211,47 @@ namespace Battle{
             return distance != (transform.position = Vector3.MoveTowards(transform.position, distance, animSpeed * Time.deltaTime));
         }
 
+        //receive damage
         public void TakeDamage(float damageAmount)
         {
-            player.CurHP -= damageAmount;
+            float dmgAmount = damageAmount - def_strength;
+            if(dmgAmount <= 0)
+            {
+                dmgAmount = 0;
+            }
+            player.CurHP -= dmgAmount;
             if(player.CurHP <= 0)
             {
                 currentState = TurnState.DEAD;
+            }
+            def_strength = 0;
+        }
+
+        //do damage
+        public void DoDamage()
+        {
+                BaseAttack attk = (BaseAttack)BSM.PerformList[0].choosenAttack;
+                float calc_damage = player.strenght + attk.attackDamage;
+                EnemyToAttack.GetComponent<EnemyStateMachine>().ReceiveDamage(calc_damage);
+                def_strength = 0;
+        }
+
+        public void DoDefence()
+        {
+            BaseDef deff = (BaseDef)BSM.PerformList[0].choosenAttack;
+            def_strength = deff.defenceStrength;
+        }
+
+        //change the object to defence mode after using defence skill, otherwise stay normal
+        public void userDefending(float checkdef)
+        {
+            if (checkdef == 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(100, 100, 255, 255);
             }
         }
     }

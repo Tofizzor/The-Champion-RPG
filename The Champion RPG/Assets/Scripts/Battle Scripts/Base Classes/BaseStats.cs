@@ -17,6 +17,6 @@ namespace Battle
         public int agility;
 
         public List<Stats.Skills> userSkills = new List<Stats.Skills>();
-        public List<BaseAttack> userAttacks = new List<BaseAttack>();
+        
     }
 }

@@ -7331,6 +7331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1577821532836116, guid: 415ac5be63c05aa4aaf7d83598d83fd8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224401828516133358, guid: 415ac5be63c05aa4aaf7d83598d83fd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7559,10 +7563,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0.16431046
-      objectReference: {fileID: 0}
-    - target: {fileID: 1577821532836116, guid: 415ac5be63c05aa4aaf7d83598d83fd8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415ac5be63c05aa4aaf7d83598d83fd8, type: 3}
@@ -8411,6 +8411,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 68643bf95ee55d94c914cd9eb4cba365,
         type: 2}
+    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300326, guid: 1fa42681e065b6640b60d89d1144b9f9,
+        type: 3}
+    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
 --- !u!4 &1587489085 stripped

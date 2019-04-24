@@ -12,7 +12,10 @@ namespace Battle
         {
             WAIT,
             TAKEACTION,
-            PERFORMACTION
+            PERFORMACTION,
+            CHECKALIVE,
+            WIN,
+            LOSE
         }
 
         //Stages for Player GUI control
@@ -101,6 +104,33 @@ namespace Battle
 
                 case (PerformAction.PERFORMACTION):
                     break;
+
+                case (PerformAction.CHECKALIVE):
+                    if(HerosInBattle.Count < 1)
+                    {
+                        //battle is lost
+                        battleStates = PerformAction.LOSE;
+                    }
+                    else if(EnemysInBattle.Count < 1)
+                    {
+                        //battle is won
+                        battleStates = PerformAction.WIN;
+                    }
+                    else
+                    {
+                        clearAttackPanel();
+                        HeroInput = HeroGUI.ACTIVATE;
+                    }
+                    break;
+                case (PerformAction.WIN):
+                    for(int i = 0; i < HerosInBattle.Count; i++)
+                    {
+                        HerosInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
+                    }
+                    break;
+                case (PerformAction.LOSE):
+                    Debug.Log("You Lose");
+                    break;
             }
 
             //Player stages
@@ -159,6 +189,7 @@ namespace Battle
             HeroChoice.AttackersGameObject = HerosToManage[0];
             HeroChoice.Type = "Player";
             HeroChoice.AttackersTarget = EnemysInBattle[0];
+            HeroChoice.choosenAttack = HerosToManage[0].GetComponent<HeroStateMachine>().player.userSkills[0];
             SelectPanel.SetActive(false);
             HeroInput = HeroGUI.DONE;
         }
@@ -183,7 +214,7 @@ namespace Battle
             HeroChoice.Type = "Player";
             HeroChoice.AttackersTarget = EnemysInBattle[0];
             HeroChoice.choosenAttack = defSkill;
-            AttackPanel.SetActive(false);
+            DefendPanel.SetActive(false);
             HeroInput = HeroGUI.DONE;
 
         }
@@ -202,9 +233,18 @@ namespace Battle
         void PlayerInputDone()
         {
             PerformList.Add(HeroChoice);
+            clearAttackPanel();
             HerosToManage.RemoveAt(0);
             HeroInput = HeroGUI.ACTIVATE;
-            foreach(GameObject attButton in attButtons)
+            
+        }
+
+        void clearAttackPanel()
+        {
+            SelectPanel.SetActive(false);
+            AttackPanel.SetActive(false);
+            DefendPanel.SetActive(false);
+            foreach (GameObject attButton in attButtons)
             {
                 Destroy(attButton);
             }
@@ -214,6 +254,10 @@ namespace Battle
         //create action buttons
         void CreateAttackButtons()
         {
+            //variables to check if list contains any buttons
+            int attButtonCount = 0;
+            int defButtonCount = 0;
+
             GameObject AttackButton = Instantiate(selectButton) as GameObject;
             Text AttackText = AttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
             AttackText.text = "Attack";
@@ -234,8 +278,14 @@ namespace Battle
                         ATB.skillAttackToPerfrom = skillatk;
                         AttButton.transform.SetParent(attackSpacer, false);
                         attButtons.Add(AttButton);
+                        attButtonCount++;
                     }
                     
+
+                }
+                if(attButtonCount == 0)
+                {
+                    AttackButton.GetComponent<Button>().interactable = false;
                 }
             }
             else
@@ -259,12 +309,18 @@ namespace Battle
                         GameObject DefButton = Instantiate(defButton) as GameObject;
                         Text DefButtonText = DefButton.transform.Find("Text").gameObject.GetComponent<Text>();
                         DefButtonText.text = skilldef.skillName;
+                        DefendButton DFB = DefButton.GetComponent<DefendButton>();
+                        DFB.skillDefenceToPerfrom = skilldef;
                         DefButton.transform.SetParent(defendSpacer, false);
                         attButtons.Add(DefButton);
-                        //AttackButton ATB = SkillButton.GetComponent<AttackButton>();
-                        //ATB.skillAttackToPerfrom = skillatk;
+                        defButtonCount++;
                     }
+                    
 
+                }
+                if (defButtonCount == 0)
+                {
+                    DefendButton.GetComponent<Button>().interactable = false;
                 }
             }
             else

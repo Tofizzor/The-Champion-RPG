@@ -28,8 +28,13 @@ namespace Battle
         //Time for action variables
         private bool actionStarted = false;
         public GameObject attackPlayer;
-        private float skillDamage;
         private float animSpeed = 15f;
+        //attack strenght
+        private float skillDamage = 0;
+        //defence strenght
+        private float def_strength = 0;
+        //alive
+        private bool alive = true;
 
         // Start is called before the first frame update
         void Start()
@@ -61,8 +66,48 @@ namespace Battle
                     break;
 
                 case (TurnState.DEAD):
+                    if (!alive)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        StartCoroutine(enemyDefeated());
+                        //enemy is not alive
+                        alive = false;
+                        //check alive
+                        BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
+
+                    }
                     break;
             }
+            userDefending(def_strength);
+        }
+
+        private IEnumerator enemyDefeated()
+        {
+            //enemy attacks are removed
+            if (BSM.EnemysInBattle.Count > 0)
+            {
+                for (int i = 0; i < BSM.PerformList.Count; i++)
+                {
+                    if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                    {
+                        BSM.PerformList.Remove(BSM.PerformList[i]);
+                    }
+                    if (BSM.PerformList[i].AttackersTarget == this.gameObject)
+                    {
+                        BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
+                    }
+                }
+            }
+            //remove from battle
+            BSM.EnemysInBattle.Remove(this.gameObject);
+            //after enemy dies change colour
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225, 0, 0, 255);
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Transfer back to the main scene");
+
         }
 
         void UpgradeProgressBar()
@@ -89,6 +134,11 @@ namespace Battle
                 skillDamage = attk.attackDamage;
                 Debug.Log(this.gameObject.name + " has chosen " + myAttack.choosenAttack.skillName + " with damage " + attk.attackDamage);
             }
+            else if(myAttack.choosenAttack.skillType == "Def")
+            {
+                BaseDef deff = (BaseDef)myAttack.choosenAttack;
+                def_strength = deff.defenceStrength;
+            }
             BSM.CollectActions(myAttack);
         }
 
@@ -102,7 +152,9 @@ namespace Battle
             actionStarted = true;
 
             //enemy movement to the player
-            Vector2 playerPosition = new Vector2(attackPlayer.transform.position.x + 1f, attackPlayer.transform.position.y);
+            if (BSM.PerformList[0].choosenAttack.skillType == "Att")
+            {
+                Vector2 playerPosition = new Vector2(attackPlayer.transform.position.x + 1f, attackPlayer.transform.position.y);
             while (MoveToEnemy(playerPosition))
             {
                 yield return null;
@@ -110,7 +162,14 @@ namespace Battle
             //attack process
             yield return new WaitForSeconds(0.2f);
             //dealing damage
-            DoDamage();
+                DoDamage();
+
+
+            }
+            else if (BSM.PerformList[0].choosenAttack.skillType == "Def")
+            {
+                DoDefence();
+            }
             //enemy movement back to the starting position
             Vector3 firstPosition = startPosition;
             while (MoveBack(firstPosition))
@@ -143,8 +202,43 @@ namespace Battle
         void DoDamage()
         { 
             float dmg = enemy.strenght + skillDamage;
-            Debug.Log(dmg);
             attackPlayer.GetComponent<HeroStateMachine>().TakeDamage(dmg);
+            def_strength = 0;
         }
+
+        public void ReceiveDamage(float damageAmount)
+        {
+            float dmgAmount = damageAmount - def_strength;
+            if (dmgAmount <= 0)
+            {
+                dmgAmount = 0;
+            }
+            enemy.CurHP -= dmgAmount;
+            if(enemy.CurHP <= 0)
+            {
+                enemy.CurHP = 0;
+                currentState = TurnState.DEAD;
+            }
+            def_strength = 0;
+        }
+
+        public void DoDefence()
+        {
+            def_strength += enemy.fighting;
+        }
+
+        //change the object to defence mode after using defence skill, otherwise stay normal
+        public void userDefending(float checkdef)
+        {
+            if (checkdef == 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(100, 100, 255, 255);
+            }
+        }
+
     }
 }

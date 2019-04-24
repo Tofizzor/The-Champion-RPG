@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1447647693085188, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4708494612637594, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -189,9 +193,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3107bdd4a193c144ab7f92ed0d57ea67,
         type: 2}
+    - target: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: Attributes.Array.data[1].amount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: player.userSkills.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: ProgressBar
@@ -258,8 +266,7 @@ PrefabInstance:
     - target: {fileID: 120608217, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: player.userSkills.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 3107bdd4a193c144ab7f92ed0d57ea67,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1671026318, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -273,6 +280,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 212183762648921796, guid: abb1d19dae0f99a45b303c0fa39c2b29,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212183762648921796, guid: abb1d19dae0f99a45b303c0fa39c2b29,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212183762648921796, guid: abb1d19dae0f99a45b303c0fa39c2b29,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212183762648921796, guid: abb1d19dae0f99a45b303c0fa39c2b29,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114851768064356930, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
@@ -754,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.userSkills.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 68206f5bc06a2574983f7a9603d28b17,
+      objectReference: {fileID: 11400000, guid: 3107bdd4a193c144ab7f92ed0d57ea67,
         type: 2}
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.userSkills.Array.data[1]
@@ -771,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.CurHP
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.maxStamina
@@ -783,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.strenght
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.fighting
@@ -796,6 +823,26 @@ PrefabInstance:
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: enemy.enemyTitle
       value: Rookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
+      propertyPath: enemy.userSkills.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3107bdd4a193c144ab7f92ed0d57ea67,
+        type: 2}
+    - target: {fileID: 1912106890875454245, guid: 3564b047d85e96946be63840e513375b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912106890875454245, guid: 3564b047d85e96946be63840e513375b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912106890875454245, guid: 3564b047d85e96946be63840e513375b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1775984493990412667, guid: 3564b047d85e96946be63840e513375b, type: 3}
@@ -1131,6 +1178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SaveStats
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468556258982441253, guid: dde5b24d3032263428bbc514df0bfcb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4468556258982441255, guid: dde5b24d3032263428bbc514df0bfcb0,
         type: 3}
