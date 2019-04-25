@@ -23,9 +23,9 @@ public class Inventory : ScriptableObject {
             // If item is not already in the inventory then add it
             if (!items.Contains(itemToAdd))
             {
-            numberOfItems++;
+
             items.Add(itemToAdd);
-            
+            numberOfItems = items.Count;
             }
     }
 

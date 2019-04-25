@@ -8222,7 +8222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleEnemys:
   - {fileID: 1631259945673617225, guid: f5bf578c9153e0d469d779253dfe600e, type: 3}
-  - {fileID: 5408070974741556129, guid: 48cf13f349fded0479913d4f027259c6, type: 3}
+  - {fileID: 6734713849685595275, guid: 48cf13f349fded0479913d4f027259c6, type: 3}
   findEnemy: {fileID: 0}
   objects:
   - {fileID: 11400000, guid: 8a757e013ce65d2449ae5049e9cce065, type: 2}
@@ -8401,6 +8401,15 @@ PrefabInstance:
     - target: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: PlayerMaxHP
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 636022e25e1927447b5aa616d03d76c2,
+        type: 2}
+    - target: {fileID: 1625071661, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
+      propertyPath: Attributes.Array.data[1].amount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1671026318, guid: abb1d19dae0f99a45b303c0fa39c2b29, type: 3}
       propertyPath: m_IsActive

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Stats
 {
@@ -44,7 +45,8 @@ namespace Stats
                     onLevelChange();
             }
         }
-
+        public Inventory playerInventory;
+        int numOfItems = 0;
 
         [Header("Player Attributes")]
         public List<PlayerAttributes> Attributes = new List<PlayerAttributes>();
@@ -70,6 +72,33 @@ namespace Stats
         }
 
 
+        private void Update()
+        {
+            if (SceneManager.GetActiveScene().name == "MainScene")
+            {
+                if (playerInventory.items.Count > 0 && numOfItems < playerInventory.items.Count)
+                {
+                    for (int a = 0; a < Attributes.Count; a++)
+                    {
+                        for (int i = numOfItems; i < playerInventory.items.Count; i++)
+                        {
+                            if (Attributes[a].attribute.name == "Strength")
+                            {
+                                Attributes[a].amount += playerInventory.items[i].Strength;
+                                Debug.Log("Strength" + Attributes[a].amount);
+                            }
+                            if (Attributes[a].attribute.name == "Agility")
+                            {
+                                Attributes[a].amount += playerInventory.items[i].Agility;
+                                Debug.Log("Agility" + Attributes[a].amount);
+                            }
 
+                        }
+                    }
+                    numOfItems += 1;
+                }
+            }
+
+        }
     }
 }
