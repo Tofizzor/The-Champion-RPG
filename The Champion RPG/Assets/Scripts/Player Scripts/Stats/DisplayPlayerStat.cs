@@ -11,9 +11,13 @@ namespace Stats
         public Text ShowPlayerName;
         public Text ShowXP;
         public Text ShowLVL;
+        public Text ShowSTR;
+        public Text ShowAGL;
+        public Text ShowFGH;
 
         [SerializeField]
         private PlayerStats m_PlayerHandler;
+        
 
         void Update()
         {
@@ -27,10 +31,31 @@ namespace Stats
                 ShowPlayerName.text = m_PlayerHandler.PlayerName.ToString();
 
             if (ShowXP)
-                ShowXP.text = m_PlayerHandler.PlayerXP.ToString() + " XP";
+                ShowXP.text = m_PlayerHandler.PlayerXP.ToString();
 
             if (ShowLVL)
-                ShowLVL.text = m_PlayerHandler.PlayerLevel.ToString() + " LVL";
+                ShowLVL.text = m_PlayerHandler.PlayerLevel.ToString();
+
+            for(int i = 0; i < m_PlayerHandler.Attributes.Count; i++)
+            {
+                if(m_PlayerHandler.Attributes[i].attribute.name == "Strength")
+                {
+
+                    if (ShowSTR)
+                        ShowSTR.text = m_PlayerHandler.Attributes[i].amount.ToString();
+                }
+                if(m_PlayerHandler.Attributes[i].attribute.name == "Agility")
+                {
+                    if (ShowAGL)
+                        ShowAGL.text = m_PlayerHandler.Attributes[i].amount.ToString();
+                }
+                if (m_PlayerHandler.Attributes[i].attribute.name == "Fighting")
+                {
+                    if (ShowFGH)
+                        ShowFGH.text = m_PlayerHandler.Attributes[i].amount.ToString();
+                }
+            }
+            
         }
     }
 }

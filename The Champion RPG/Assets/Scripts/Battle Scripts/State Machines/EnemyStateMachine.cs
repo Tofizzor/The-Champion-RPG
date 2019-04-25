@@ -121,25 +121,31 @@ namespace Battle
 
         void ChooseAction()
         {
-            HandleTurn myAttack = new HandleTurn();
-            myAttack.Attacker = enemy.userName;
-            myAttack.Type = "Enemy";
-            myAttack.AttackersGameObject = this.gameObject;
-            myAttack.AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
-            int num = Random.Range(0, enemy.userSkills.Count);
-            myAttack.choosenAttack = enemy.userSkills[num];
-            if(myAttack.choosenAttack.skillType == "Att")
+            if (BSM.HerosInBattle.Count == 0)
             {
-                BaseAttack attk = (BaseAttack)myAttack.choosenAttack;
-                skillDamage = attk.attackDamage;
-                Debug.Log(this.gameObject.name + " has chosen " + myAttack.choosenAttack.skillName + " with damage " + attk.attackDamage);
+                currentState = TurnState.WAITING;
             }
-            else if(myAttack.choosenAttack.skillType == "Def")
+            else if (BSM.HerosInBattle.Count > 0)
             {
-                BaseDef deff = (BaseDef)myAttack.choosenAttack;
-                def_strength = deff.defenceStrength;
+                HandleTurn myAttack = new HandleTurn();
+                myAttack.Attacker = enemy.userName;
+                myAttack.Type = "Enemy";
+                myAttack.AttackersGameObject = this.gameObject;
+                myAttack.AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+                int num = Random.Range(0, enemy.userSkills.Count);
+                myAttack.choosenAttack = enemy.userSkills[num];
+                if (myAttack.choosenAttack.skillType == "Att")
+                {
+                    BaseAttack attk = (BaseAttack)myAttack.choosenAttack;
+                    skillDamage = attk.attackDamage;
+                }
+                else if (myAttack.choosenAttack.skillType == "Def")
+                {
+                    BaseDef deff = (BaseDef)myAttack.choosenAttack;
+                    def_strength = deff.defenceStrength;
+                }
+                BSM.CollectActions(myAttack);
             }
-            BSM.CollectActions(myAttack);
         }
 
 

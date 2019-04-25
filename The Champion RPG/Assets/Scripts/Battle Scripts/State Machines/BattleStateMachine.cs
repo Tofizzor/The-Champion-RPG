@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Battle
 {
     public class BattleStateMachine : MonoBehaviour
-    {   
-        //Stages for the battle actions
+    {
+        [Header("Winning message & winning transition")]
+        public Text won;
+        public GameObject winTrans;
+        [Header("Loss message & loss transition")]
+        public Text defeat;
+        public GameObject lossTrans;
+
+        bool transOn = false;
+
         public enum PerformAction
         {
             WAIT,
@@ -68,6 +77,9 @@ namespace Battle
             SelectPanel.SetActive(false);
             AttackPanel.SetActive(false);
             DefendPanel.SetActive(false);
+            winTrans.SetActive(false);
+            won.gameObject.SetActive(false);
+            defeat.gameObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -127,9 +139,16 @@ namespace Battle
                     {
                         HerosInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
                     }
+                    if (transOn == false)
+                    {
+                        StartCoroutine(WinDisplay());
+                    }
                     break;
                 case (PerformAction.LOSE):
-                    Debug.Log("You Lose");
+                    if (transOn == false)
+                    {
+                        StartCoroutine(LossDisplay());
+                    }
                     break;
             }
 
@@ -331,6 +350,24 @@ namespace Battle
 
 
         }
+        private IEnumerator WinDisplay()
+        {
+            won.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            winTrans.SetActive(true);
+            transOn = true;
+
+        }
+        private IEnumerator LossDisplay()
+        {
+            defeat.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            lossTrans.SetActive(true);
+            transOn = true;
+
+        }
+
+
 
     }
 }

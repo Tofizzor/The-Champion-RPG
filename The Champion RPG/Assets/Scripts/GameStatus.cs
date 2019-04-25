@@ -8,6 +8,8 @@ namespace GameStats
     {
         public static GameStatus gameSave;
         public List<ScriptableObject> objects = new List<ScriptableObject>();
+        
+
         private void Awake()
         {
             if (gameSave == null)

@@ -29,10 +29,10 @@ namespace Battle{
         //variables for health bar
         public Image ProgressBar;
         public Image HealthBar;
-        [Header("Defeated Player Transition")]
-        public Text defeat;
-        public Vector2 playerPosition;
-        public VectorValue playerStorage;
+        //[Header("Defeated Player Transition")]
+        //public Text defeat;
+        //public Vector2 playerPosition;
+        //public VectorValue playerStorage;
         //IeNumerator
         public GameObject EnemyToAttack;
         private bool actionStarted = false;
@@ -47,8 +47,6 @@ namespace Battle{
     {
             //gathers players stats into battle
             player.GetStats(pStats);
-            //set defeated state objects to false
-            defeat.gameObject.SetActive(false);
             startPosition = transform.position;
             //how fast does the progress bar charge
             curCooldown = Random.Range(0, 0.5f);
@@ -85,7 +83,7 @@ namespace Battle{
                     }
                     else
                     {
-                        StartCoroutine(playerDefeated());
+                        playerDefeated();
                         BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
                         alive = false;
                     }
@@ -163,9 +161,8 @@ namespace Battle{
 
             }
 
-        private IEnumerator playerDefeated()
+        private void playerDefeated()
         {
-            defeat.gameObject.SetActive(true);
             //take the object from the list and hide the attack panel
             BSM.HerosInBattle.Remove(this.gameObject);
             BSM.HerosToManage.Remove(this.gameObject);
@@ -190,13 +187,13 @@ namespace Battle{
             }
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225,0,0,255);
             //wait for a moment
-            yield return new WaitForSeconds(0.5f);
-            playerStorage.initialValue = playerPosition;
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("House");
-            while (!asyncOperation.isDone)
-            {
-                yield return null;
-            }
+            //yield return new WaitForSeconds(0.5f);
+            //playerStorage.initialValue = playerPosition;
+            //AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("House");
+            //while (!asyncOperation.isDone)
+            //{
+            //    yield return null;
+            //}
 
 
         }
