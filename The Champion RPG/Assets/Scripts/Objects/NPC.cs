@@ -19,6 +19,7 @@ public class NPC : Interactable
     public bool defeated = false;
 
     [Header("Fighting & XP gain")]
+    public string EnemyTitle;
     public int XpGain;
     public Stats.PlayerStats pStats;
 
@@ -87,16 +88,19 @@ public class NPC : Interactable
     {
         if (collision.CompareTag("Player"))
         {
+            GameStats.GameStatus.gameSave.findEnemy = GameObject.FindWithTag("Enemy").gameObject.GetComponent<NPC>();
             dialogBox.SetActive(false);
             playerInRange = true;
             Enable();
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            GameStats.GameStatus.gameSave.findEnemy = null;
             dialogBox.SetActive(false);
             playerInRange = false;
             Disable();

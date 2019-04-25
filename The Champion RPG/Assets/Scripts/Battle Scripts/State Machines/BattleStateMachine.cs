@@ -68,11 +68,16 @@ namespace Battle
 
         private void Awake()
         {
-            
-            GameObject NewEnemy = Instantiate(GameStats.GameStatus.gameSave.possibleEnemys[0], enemyPosition , Quaternion.identity) as GameObject;
-            NewEnemy.name = NewEnemy.GetComponent<EnemyStateMachine>().enemy.userName;
-            NewEnemy.GetComponent<EnemyStateMachine>().enemy.userName = NewEnemy.name;
-            EnemysInBattle.Add(NewEnemy);
+            for (int i = 0; i < GameStats.GameStatus.gameSave.possibleEnemys.Count; i++)
+            {
+                if (GameStats.GameStatus.gameSave.findEnemy.EnemyTitle == GameStats.GameStatus.gameSave.possibleEnemys[i].GetComponent<EnemyStateMachine>().enemy.enemyTitle)
+                {
+                    GameObject NewEnemy = Instantiate(GameStats.GameStatus.gameSave.possibleEnemys[i], enemyPosition, Quaternion.identity) as GameObject;
+                    NewEnemy.name = NewEnemy.GetComponent<EnemyStateMachine>().enemy.userName;
+                    NewEnemy.GetComponent<EnemyStateMachine>().enemy.userName = NewEnemy.name;
+                    EnemysInBattle.Add(NewEnemy);
+                }
+            }
         }
 
         // Start is called before the first frame update
