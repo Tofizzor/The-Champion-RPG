@@ -85,12 +85,10 @@ namespace Stats
                             if (Attributes[a].attribute.name == "Strength")
                             {
                                 Attributes[a].amount += playerInventory.items[i].Strength;
-                                Debug.Log("Strength" + Attributes[a].amount);
                             }
                             if (Attributes[a].attribute.name == "Agility")
                             {
                                 Attributes[a].amount += playerInventory.items[i].Agility;
-                                Debug.Log("Agility" + Attributes[a].amount);
                             }
 
                         }
