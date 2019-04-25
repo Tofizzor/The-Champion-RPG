@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveStats : MonoBehaviour
 {
-    
+
     public Stats.PlayerStats pStats;
     //Static lists that stores skills and attributes
     static public List<Stats.Skills> SaveSkills = new List<Stats.Skills>();

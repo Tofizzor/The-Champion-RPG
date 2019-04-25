@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class NPC : Interactable
 {
     [Header("Signal & Dialog")]
@@ -15,6 +16,7 @@ public class NPC : Interactable
     public string metDialog;
     public BoolValue alreadyMet;
     public bool readyForAction = false;
+    public bool defeated = false;
 
     [Header("Fighting & XP gain")]
     public int XpGain;
@@ -59,6 +61,7 @@ public class NPC : Interactable
         {
             sceneTrans.SetActive(true);
             readyForAction = false;
+            GetXP();
         }
 
     }
@@ -70,7 +73,6 @@ public class NPC : Interactable
         //Player has already interacted with the NPC
         playerMet = true;
         alreadyMet.runTimeValue = playerMet;
-        GetXP();
     }
 
     public void RepeatDialog()

@@ -184,22 +184,22 @@ PrefabInstance:
     - target: {fileID: 61993217723525522, guid: e9bab50e868cdd74e9ee81cde9c3bbf3,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.0065517426
+      value: 0.62782335
       objectReference: {fileID: 0}
     - target: {fileID: 61993217723525522, guid: e9bab50e868cdd74e9ee81cde9c3bbf3,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.0129948
+      value: 2.281745
       objectReference: {fileID: 0}
     - target: {fileID: 61993217723525522, guid: e9bab50e868cdd74e9ee81cde9c3bbf3,
         type: 3}
       propertyPath: m_Offset.x
-      value: -0.013093948
+      value: 0.027832985
       objectReference: {fileID: 0}
     - target: {fileID: 61993217723525522, guid: e9bab50e868cdd74e9ee81cde9c3bbf3,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.0072937
+      value: 1.8667698
       objectReference: {fileID: 0}
     - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
       propertyPath: m_Sprite
@@ -8325,6 +8325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0c7f559b0ce4040b18d1695083c0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleEnemys:
+  - {fileID: 1631259945673617225, guid: f5bf578c9153e0d469d779253dfe600e, type: 3}
   objects:
   - {fileID: 11400000, guid: 8a757e013ce65d2449ae5049e9cce065, type: 2}
   - {fileID: 11400000, guid: f434e707b18c704448ba28f32b7fdd3a, type: 2}
@@ -14810,7 +14812,7 @@ PrefabInstance:
     - target: {fileID: 1764210453709240481, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1760161845494008213, guid: 3564b047d85e96946be63840e513375b,
         type: 3}
@@ -14869,7 +14871,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
+      propertyPath: enemy.Level
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900271751, guid: 3564b047d85e96946be63840e513375b, type: 3}
+      propertyPath: enemy.enemyTitle
+      value: Rookie
       objectReference: {fileID: 0}
     - target: {fileID: 1775984493990412667, guid: 3564b047d85e96946be63840e513375b,
         type: 3}

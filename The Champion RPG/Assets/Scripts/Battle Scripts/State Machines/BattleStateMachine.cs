@@ -15,6 +15,8 @@ namespace Battle
         public Text defeat;
         public GameObject lossTrans;
 
+        public Vector2 enemyPosition;
+
         bool transOn = false;
 
         public enum PerformAction
@@ -64,12 +66,20 @@ namespace Battle
         public List<GameObject> EnemysInBattle = new List<GameObject>();
 
 
+        private void Awake()
+        {
+            
+            GameObject NewEnemy = Instantiate(GameStats.GameStatus.gameSave.possibleEnemys[0], enemyPosition , Quaternion.identity) as GameObject;
+            NewEnemy.name = NewEnemy.GetComponent<EnemyStateMachine>().enemy.userName;
+            NewEnemy.GetComponent<EnemyStateMachine>().enemy.userName = NewEnemy.name;
+            EnemysInBattle.Add(NewEnemy);
+        }
 
         // Start is called before the first frame update
         void Start()
         {
             battleStates = PerformAction.WAIT;
-            EnemysInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+            //EnemysInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
             HerosInBattle.AddRange(GameObject.FindGameObjectsWithTag("Player"));
             HeroInput = HeroGUI.ACTIVATE;
             //call function to create buttons for different enemys
@@ -82,6 +92,7 @@ namespace Battle
             defeat.gameObject.SetActive(false);
         }
 
+        
         // Update is called once per frame
         void Update()
         {

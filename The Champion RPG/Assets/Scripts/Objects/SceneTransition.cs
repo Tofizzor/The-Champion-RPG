@@ -50,7 +50,7 @@ namespace GameStats
                 Instantiate(fadeOutPanel, Vector3.zero, Quaternion.identity);
             }
             yield return new WaitForSeconds(fadeWait);
-            
+
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad);
             while (!asyncOperation.isDone)
             {

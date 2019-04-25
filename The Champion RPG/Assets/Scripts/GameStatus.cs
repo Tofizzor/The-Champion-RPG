@@ -7,6 +7,9 @@ namespace GameStats
     public class GameStatus : MonoBehaviour
     {
         public static GameStatus gameSave;
+
+        public List<GameObject> possibleEnemys = new List<GameObject>();
+
         public List<ScriptableObject> objects = new List<ScriptableObject>();
         
 
@@ -23,6 +26,7 @@ namespace GameStats
                 
             }
             DontDestroyOnLoad(this);
+            
         }
 
         

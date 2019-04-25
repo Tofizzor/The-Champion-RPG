@@ -57,7 +57,7 @@ namespace Battle{
     // Update is called once per frame
     void Update()
     {
-            UpgradeHealthBar();
+        UpgradeHealthBar();
         switch (currentState)
         {
             case (TurnState.PROCESSING):
@@ -107,7 +107,7 @@ namespace Battle{
         {
 
             float healthBar = player.CurHP / player.MaxHP;
-            HealthBar.transform.localScale = new Vector2(Mathf.Clamp(healthBar, 0, 1), ProgressBar.transform.localScale.y);
+            HealthBar.transform.localScale = new Vector2(Mathf.Clamp(healthBar, 0, 1), HealthBar.transform.localScale.y);
             
         }
 
@@ -172,16 +172,19 @@ namespace Battle{
             {   
                 //go through the list
                 for (int i = 0; i < BSM.PerformList.Count; i++)
-                {   
-                    //remove the object from the perfrom list
-                    if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                {
+                    if(i != 0)
                     {
-                        BSM.PerformList.Remove(BSM.PerformList[i]);
-                    }
-                    //attack any random player or ally of the player
-                    if (BSM.PerformList[i].AttackersTarget == this.gameObject)
-                    {
-                        BSM.PerformList[i].AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+                        //remove the object from the perfrom list
+                        if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                        {
+                            BSM.PerformList.Remove(BSM.PerformList[i]);
+                        }
+                        //attack any random player or ally of the player
+                        if (BSM.PerformList[i].AttackersTarget == this.gameObject)
+                        {
+                            BSM.PerformList[i].AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+                        }
                     }
                 }
             }

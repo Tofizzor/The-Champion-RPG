@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Battle
 {
@@ -8,6 +10,8 @@ namespace Battle
     {
         private BattleStateMachine BSM;
         public BaseEnemy enemy;
+        public Image HealthBar;
+        public GameObject ShowEnemyHealthBar;
         public enum TurnState
         {
             PROCESSING,
@@ -39,49 +43,59 @@ namespace Battle
         // Start is called before the first frame update
         void Start()
         {
-            currentState = TurnState.PROCESSING;
-            BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
-            startPosition = transform.position;
+            if (SceneManager.GetActiveScene().name == "BattleScene")
+            {
+                currentState = TurnState.PROCESSING;
+                BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
+                startPosition = transform.position;
+                if (ShowEnemyHealthBar)
+                {
+                    ShowEnemyHealthBar.SetActive(true);
+                }
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            switch (currentState)
+            if (SceneManager.GetActiveScene().name == "BattleScene")
             {
-                case (TurnState.PROCESSING):
-                    UpgradeProgressBar();
-                    break;
+                UpgradeHealthBar();
+                switch (currentState)
+                {
+                    case (TurnState.PROCESSING):
+                        UpgradeProgressBar();
+                        break;
 
-                case (TurnState.CHOOSEACTION):
-                    ChooseAction();
-                    currentState = TurnState.WAITING;
-                    break;
+                    case (TurnState.CHOOSEACTION):
+                        ChooseAction();
+                        currentState = TurnState.WAITING;
+                        break;
 
-                case (TurnState.WAITING):
-                    break;
+                    case (TurnState.WAITING):
+                        break;
 
-                case (TurnState.ACTION):
-                    StartCoroutine(TimeForAction());
-                    break;
+                    case (TurnState.ACTION):
+                        StartCoroutine(TimeForAction());
+                        break;
 
-                case (TurnState.DEAD):
-                    if (!alive)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        StartCoroutine(enemyDefeated());
-                        //enemy is not alive
-                        alive = false;
-                        //check alive
-                        BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
-
-                    }
-                    break;
+                    case (TurnState.DEAD):
+                        if (!alive)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            StartCoroutine(enemyDefeated());
+                            //enemy is not alive
+                            alive = false;
+                            //check alive
+                            BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
+                        }
+                        break;
+                }
+                userDefending(def_strength);
             }
-            userDefending(def_strength);
         }
 
         private IEnumerator enemyDefeated()
@@ -91,13 +105,16 @@ namespace Battle
             {
                 for (int i = 0; i < BSM.PerformList.Count; i++)
                 {
-                    if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                    if (i != 0)
                     {
-                        BSM.PerformList.Remove(BSM.PerformList[i]);
-                    }
-                    if (BSM.PerformList[i].AttackersTarget == this.gameObject)
-                    {
-                        BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
+                        if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
+                        {
+                            BSM.PerformList.Remove(BSM.PerformList[i]);
+                        }
+                        if (BSM.PerformList[i].AttackersTarget == this.gameObject)
+                        {
+                            BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
+                        }
                     }
                 }
             }
@@ -106,7 +123,6 @@ namespace Battle
             //after enemy dies change colour
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225, 0, 0, 255);
             yield return new WaitForSeconds(0.5f);
-            Debug.Log("Transfer back to the main scene");
 
         }
 
@@ -117,6 +133,28 @@ namespace Battle
             {
                 currentState = TurnState.CHOOSEACTION;
             }
+        }
+        void UpgradeHealthBar()
+        {
+            if (HealthBar)
+            {
+                if (enemy.CurHP <= 0)
+                {
+                    ShowEnemyHealthBar.SetActive(false);
+                }
+                float healthBar = enemy.CurHP / enemy.MaxHP;
+                HealthBar.transform.localScale = new Vector2(Mathf.Clamp(healthBar, 0, 1), HealthBar.transform.localScale.y);
+                if (enemy.CurHP > enemy.MaxHP / 3)
+                {
+                    HealthBar.gameObject.GetComponent<Image>().color = new Color32(73, 147, 92, 255);
+                }
+                else
+                {
+                    HealthBar.gameObject.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+                }
+            }
+            
+
         }
 
         void ChooseAction()
