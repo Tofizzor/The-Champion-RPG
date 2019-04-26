@@ -10,7 +10,6 @@ namespace GameStats
 
         [Header("New scene variables")]
         public string sceneToLoad;
-        public Vector2 playerPosition;
         public VectorValue playerStorage;
         //public VectorValue cameraMin;
         //public VectorValue cameraMax;
@@ -35,9 +34,12 @@ namespace GameStats
         {
             if (collision.CompareTag("Player") && !collision.isTrigger)
             {
-                playerStorage.initialValue = playerPosition;
                 StartCoroutine(FadeCo());
                 //SceneManager.LoadScene(sceneToLoad);
+
+            }
+            if (collision.CompareTag("Enemy"))
+            {
 
             }
         }

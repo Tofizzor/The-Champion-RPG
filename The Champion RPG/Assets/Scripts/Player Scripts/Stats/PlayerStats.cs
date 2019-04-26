@@ -48,6 +48,10 @@ namespace Stats
         public Inventory playerInventory;
         int numOfItems = 0;
 
+        //player current position
+        public float posY;
+        public float posX;
+
         [Header("Player Attributes")]
         public List<PlayerAttributes> Attributes = new List<PlayerAttributes>();
 
@@ -76,6 +80,7 @@ namespace Stats
         {
             if (SceneManager.GetActiveScene().name == "MainScene")
             {
+
                 if (playerInventory.items.Count > 0 && numOfItems < playerInventory.items.Count)
                 {
                     for (int a = 0; a < Attributes.Count; a++)

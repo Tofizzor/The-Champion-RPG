@@ -92,16 +92,17 @@ namespace Battle
             SelectPanel.SetActive(false);
             AttackPanel.SetActive(false);
             DefendPanel.SetActive(false);
-            winTrans.SetActive(false);
+            if (won)
             won.gameObject.SetActive(false);
+            if(defeat)
             defeat.gameObject.SetActive(false);
+            
         }
 
         
         // Update is called once per frame
         void Update()
         {
-
             //Enemy stages
             switch (battleStates)
             {

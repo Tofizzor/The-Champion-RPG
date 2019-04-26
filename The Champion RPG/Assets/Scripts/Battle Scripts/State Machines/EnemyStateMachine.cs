@@ -12,6 +12,7 @@ namespace Battle
         public BaseEnemy enemy;
         public Image HealthBar;
         public GameObject ShowEnemyHealthBar;
+        public Vector2 savedPosition;
         public enum TurnState
         {
             PROCESSING,
@@ -39,6 +40,8 @@ namespace Battle
         private float def_strength = 0;
         //alive
         private bool alive = true;
+        //player position
+
 
         // Start is called before the first frame update
         void Start()
@@ -105,8 +108,7 @@ namespace Battle
             {
                 for (int i = 0; i < BSM.PerformList.Count; i++)
                 {
-                    if (i != 0)
-                    {
+                    
                         if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
                         {
                             BSM.PerformList.Remove(BSM.PerformList[i]);
@@ -115,7 +117,7 @@ namespace Battle
                         {
                             BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
                         }
-                    }
+                    
                 }
             }
             //remove from battle

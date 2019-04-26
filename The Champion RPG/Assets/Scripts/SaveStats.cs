@@ -23,7 +23,7 @@ public class SaveStats : MonoBehaviour
             SaveSkills.Clear();
             SaveAttributes.Clear();
         }
-        onStart(pStats);
+        //onStart(pStats);
         //check if attributes were saved previously, prevents from putting empty list of attributes at the start
         if (attSaved == true)
         {
@@ -33,7 +33,7 @@ public class SaveStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        saveStatus(pStats);
+        //saveStatus(pStats);
     }
 
     public void onStart(Stats.PlayerStats pStats)
@@ -63,7 +63,8 @@ public class SaveStats : MonoBehaviour
         restart = false;
         SaveAttributes = pStats.Attributes;
         attSaved = true;
-
+        PlayerPrefs.SetFloat("PlayerX", pStats.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerY", pStats.transform.position.y);
     }
 
 }

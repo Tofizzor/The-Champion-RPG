@@ -11,7 +11,6 @@ namespace GameStats
         public List<GameObject> possibleEnemys = new List<GameObject>();
         public NPC findEnemy;
         public List<ScriptableObject> objects = new List<ScriptableObject>();
-        
 
         private void Awake()
         {
