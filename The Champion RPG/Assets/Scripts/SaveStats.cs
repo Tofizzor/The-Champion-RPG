@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveStats : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class SaveStats : MonoBehaviour
     //Static lists that stores skills and attributes
     static public List<Stats.Skills> SaveSkills = new List<Stats.Skills>();
     static public List<Stats.PlayerAttributes> SaveAttributes = new List<Stats.PlayerAttributes>();
-
     //bool variables for checking state
     static private bool restart = true;
     static private bool attSaved = false;

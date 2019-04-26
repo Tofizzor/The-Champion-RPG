@@ -28,7 +28,7 @@ namespace GameStats
                 GameObject panel = Instantiate(fadeInPanel, Vector3.zero, Quaternion.identity) as GameObject;
                 Destroy(panel, 1f);
             }
-
+            
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -37,9 +37,19 @@ namespace GameStats
             {
                 playerStorage.initialValue = playerPosition;
                 StartCoroutine(FadeCo());
+                if (SceneManager.GetActiveScene().name == "BattleScene")
+                {
+                    playerStorage.initialValue = GameStats.GameStatus.gameSave.playerPos;
+                }
                 //SceneManager.LoadScene(sceneToLoad);
+            }
+            if (SceneManager.GetActiveScene().name == "BattleScene" && collision.CompareTag("Enemy"))
+            {
+                sceneToLoad = collision.GetComponent<Battle.EnemyStateMachine>().lastScene;
+                //playerStorage.initialValue = GameStats.GameStatus.gameSave.playerPos;
 
             }
+
         }
 
         //When entering new scene show fade panel

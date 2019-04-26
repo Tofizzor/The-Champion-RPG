@@ -40,6 +40,9 @@ namespace Battle
         //alive
         private bool alive = true;
 
+        public string lastScene;
+        public Vector2 playerPosition;
+
         // Start is called before the first frame update
         void Start()
         {

@@ -4905,7 +4905,6 @@ MonoBehaviour:
   ShowSTR: {fileID: 547418080914005261}
   ShowAGL: {fileID: 1051195967}
   ShowFGH: {fileID: 738798915}
-  ShowUserTitle: {fileID: 0}
   m_PlayerHandler: {fileID: 698795664}
 --- !u!114 &3622550922540604767 stripped
 MonoBehaviour:
