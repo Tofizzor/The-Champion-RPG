@@ -52,7 +52,7 @@ namespace Stats
                 EnabledSkillIcon();
 
             }
-            //player can forget the skill by clicking on it
+            
             else if (m_PlayerHandler && skill && skill.EnableSkill(m_PlayerHandler) && skill.CheckSkills(m_PlayerHandler))
             {
                 TurnOnSkillIcon();

@@ -23,5 +23,5 @@ MonoBehaviour:
     amount: 2
   skillType: Def
   skillName: Dodge
-  skillCost: 0
+  skillCost: 80
   defenceStrength: 2

@@ -387,7 +387,7 @@ MonoBehaviour:
   metDialog: Keep training!
   alreadyMet: {fileID: 11400000, guid: ff3759400b856a14eb5cb6aa4f246b71, type: 2}
   readyForAction: 0
-  defeated: 0
+  defeated: {fileID: 0}
   EnemyTitle: 
   XpGain: 0
   pStats: {fileID: 0}
@@ -423,6 +423,7 @@ MonoBehaviour:
   ShowEnemyHealthBar: {fileID: 9046415936904927777}
   currentState: 0
   attackPlayer: {fileID: 0}
+  defeated: {fileID: 11400000, guid: 1ffb583cbb26be140b5cd19f4f1ba2bf, type: 2}
   lastScene: House
   playerPosition: {x: -4, y: -0.2}
 --- !u!50 &4322930229932624585

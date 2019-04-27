@@ -74,6 +74,11 @@ namespace Stats
 
         private void Update()
         {
+            
+            if(PlayerSkills.Count == 4 && PlayerLevel == 1)
+            {
+                PlayerLevel++;
+            }
             if (SceneManager.GetActiveScene().name == "MainScene")
             {
                 if (playerInventory.items.Count > 0 && numOfItems < playerInventory.items.Count)
@@ -90,6 +95,7 @@ namespace Stats
                             {
                                 Attributes[a].amount += playerInventory.items[i].Agility;
                             }
+
 
                         }
                     }

@@ -44,7 +44,7 @@ public class Chest : Interactable {
         // Dialog Window on
         dialogBox.SetActive(true);
         // dialog text = contents text
-        dialogText.text = itemContains.itemDescription;
+        dialogText.text = "You got " + itemContains.itemName;
         // add contents to the inventory
         playerInventory.AddItem(itemContains);
         playerInventory.currentItem = itemContains;

@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Boxing Gloves
   itemSprite: {fileID: 0}
   itemDescription: Protective equipment for arms
-  Strength: 1
-  Agility: 0
+  Strength: 4
+  Agility: 2

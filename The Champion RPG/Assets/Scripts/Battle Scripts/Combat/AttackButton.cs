@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Battle
 {
@@ -8,10 +9,13 @@ namespace Battle
     {
         public Stats.Skills skillAttackToPerfrom;
 
+
         public void PerfromAttack()
         {
             BaseAttack attk = (BaseAttack)skillAttackToPerfrom;
             GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().Input2(attk);
         }
+
+       
     }
 }

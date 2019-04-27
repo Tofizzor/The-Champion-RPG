@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace Battle{
-    public class HeroStateMachine : MonoBehaviour
+    public class PlayerStateMachine : MonoBehaviour
     {
         private BattleStateMachine BSM;
         public Stats.PlayerStats pStats;
@@ -58,19 +58,26 @@ namespace Battle{
     void Update()
     {
         UpdateHealthBar();
+        UpdateProgressBar();
         switch (currentState)
         {
             case (TurnState.PROCESSING):
-                UpdateProgressBar();
-                break;
+                    for (int i = 0; i < pStats.PlayerSkills.Count; i++)
+                    {
+                        if (player.curStamina >= pStats.PlayerSkills[i].skillCost)
+                        {
+                            currentState = TurnState.ADDTOLIST;
+                        }
+                    }
+                    break;
 
             case (TurnState.ADDTOLIST):
-                    BSM.HerosToManage.Add(this.gameObject);
+                    BSM.PlayersToManage.Add(this.gameObject);
                     currentState = TurnState.WAITING;
                 break;
 
             case (TurnState.WAITING):
-                break;
+                    break;
 
             case (TurnState.ACTION):
                     StartCoroutine(TimeForAction());
@@ -95,13 +102,25 @@ namespace Battle{
     
     void UpdateProgressBar()
     {
-        curCooldown = curCooldown + Time.deltaTime;
-        float calcCooldown = curCooldown / maxCooldown;
-        ProgressBar.transform.localScale = new Vector2(Mathf.Clamp(calcCooldown, 0, 1), ProgressBar.transform.localScale.y);
-        if (curCooldown >= maxCooldown)
-        {
-            currentState = TurnState.ADDTOLIST;
-        }
+            //curCooldown = curCooldown + Time.deltaTime;
+            //float calcCooldown = curCooldown / maxCooldown;
+            if (player.curStamina < player.maxStamina)
+            {
+                player.curStamina = player.curStamina + (Time.deltaTime * ((player.agility * 4)+ (player.fighting * 5)));
+            }
+                float calcStamina = player.curStamina / player.maxStamina;
+                ProgressBar.transform.localScale = new Vector2(Mathf.Clamp(calcStamina, 0, 1), ProgressBar.transform.localScale.y);
+            //for(int i = 0; i < pStats.PlayerSkills.Count; i++)
+            //{
+            //    if (player.curStamina >= pStats.PlayerSkills[i].skillCost)
+            //    {
+            //        currentState = TurnState.ADDTOLIST;
+            //    }
+            //}
+        //    if (player.curStamina >= player.maxStamina)
+        //{
+        //    currentState = TurnState.ADDTOLIST;
+        //}
     }
 
         void UpdateHealthBar()
@@ -168,8 +187,8 @@ namespace Battle{
         private void playerDefeated()
         {
             //take the object from the list and hide the attack panel
-            BSM.HerosInBattle.Remove(this.gameObject);
-            BSM.HerosToManage.Remove(this.gameObject);
+            BSM.PlayersInBattle.Remove(this.gameObject);
+            BSM.PlayersToManage.Remove(this.gameObject);
             BSM.SelectPanel.SetActive(false);
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225,0,0,255);
             //wait for a moment
@@ -217,6 +236,7 @@ namespace Battle{
                 float calc_damage = player.strenght + attk.attackDamage;
                 EnemyToAttack.GetComponent<EnemyStateMachine>().ReceiveDamage(calc_damage);
                 def_strength = 0;
+            player.curStamina = player.curStamina - attk.skillCost;
         }
 
         //do defence
@@ -224,6 +244,7 @@ namespace Battle{
         {
             BaseDef deff = (BaseDef)BSM.PerformList[0].choosenAttack;
             def_strength = deff.defenceStrength;
+            player.curStamina = player.curStamina - deff.skillCost;
         }
 
         //change the object to defence mode after using defence skill, otherwise stay normal

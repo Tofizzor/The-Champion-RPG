@@ -25,5 +25,5 @@ MonoBehaviour:
     amount: 2
   skillType: Att
   skillName: Jab
-  skillCost: 0
-  attackDamage: 2
+  skillCost: 30
+  attackDamage: 3

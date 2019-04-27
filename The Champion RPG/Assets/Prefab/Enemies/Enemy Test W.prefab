@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 120060192510044187}
   - component: {fileID: 1862191524957898554}
   m_Layer: 0
-  m_Name: EnemyWorld
+  m_Name: Enemy Test W
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   metDialog: Keep training!
   alreadyMet: {fileID: 11400000, guid: c15c80e0014a7164ea5cdbd621b1b6e2, type: 2}
   readyForAction: 0
-  defeated: 0
+  defeated: {fileID: 11400000, guid: 1ffb583cbb26be140b5cd19f4f1ba2bf, type: 2}
   EnemyTitle: Test
   XpGain: 20
   pStats: {fileID: 0}
@@ -193,6 +193,9 @@ MonoBehaviour:
   ShowEnemyHealthBar: {fileID: 0}
   currentState: 0
   attackPlayer: {fileID: 0}
+  defeated: {fileID: 0}
+  lastScene: 
+  playerPosition: {x: 0, y: 0}
 --- !u!1001 &120060192284696910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262,6 +265,14 @@ PrefabInstance:
       propertyPath: playerPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 61993217723525522, guid: e9bab50e868cdd74e9ee81cde9c3bbf3,
         type: 3}
       propertyPath: m_Offset.x
@@ -281,14 +292,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 2.281745
-      objectReference: {fileID: 0}
-    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}

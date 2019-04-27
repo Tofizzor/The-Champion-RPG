@@ -30,7 +30,7 @@ namespace Battle
         }
 
         //Stages for Player GUI control
-        public enum HeroGUI
+        public enum PlayerGUI
         {
             ACTIVATE,
             WAITING,
@@ -38,7 +38,7 @@ namespace Battle
             //INPUT2,
             DONE
         }
-        public HeroGUI HeroInput;
+        public PlayerGUI PlayerInput;
         public GameObject SelectPanel;
         public GameObject AttackPanel;
         public GameObject DefendPanel;
@@ -52,8 +52,8 @@ namespace Battle
         //public GameObject EnemySelectPanel;
 
         //List for future improvements where player has teamates
-        public List<GameObject> HerosToManage = new List<GameObject>();
-        private HandleTurn HeroChoice;
+        public List<GameObject> PlayersToManage = new List<GameObject>();
+        private HandleTurn PlayerChoice;
         //public GameObject enemyButton; buttons that will select different enemy
         //public Transform Spacer;
 
@@ -62,7 +62,7 @@ namespace Battle
         //List for handling turns
         public List<HandleTurn> PerformList = new List<HandleTurn>();
         //List for future improvements where there is more enemys and player teammates
-        public List<GameObject> HerosInBattle = new List<GameObject>();
+        public List<GameObject> PlayersInBattle = new List<GameObject>();
         public List<GameObject> EnemysInBattle = new List<GameObject>();
 
 
@@ -85,8 +85,8 @@ namespace Battle
         {
             battleStates = PerformAction.WAIT;
             //EnemysInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-            HerosInBattle.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-            HeroInput = HeroGUI.ACTIVATE;
+            PlayersInBattle.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+            PlayerInput = PlayerGUI.ACTIVATE;
             //call function to create buttons for different enemys
             //EnemyButtons();
             SelectPanel.SetActive(false);
@@ -123,9 +123,9 @@ namespace Battle
 
                     if (PerformList[0].Type == "Player")
                     {
-                        HeroStateMachine HSM = performer.GetComponent<HeroStateMachine>();
+                        PlayerStateMachine HSM = performer.GetComponent<PlayerStateMachine>();
                         HSM.EnemyToAttack = PerformList[0].AttackersTarget;
-                        HSM.currentState = HeroStateMachine.TurnState.ACTION;
+                        HSM.currentState = PlayerStateMachine.TurnState.ACTION;
                     }
                     battleStates = PerformAction.PERFORMACTION;
                     break;
@@ -134,7 +134,7 @@ namespace Battle
                     break;
 
                 case (PerformAction.CHECKALIVE):
-                    if(HerosInBattle.Count < 1)
+                    if(PlayersInBattle.Count < 1)
                     {
                         //battle is lost
                         battleStates = PerformAction.LOSE;
@@ -147,13 +147,13 @@ namespace Battle
                     else
                     {
                         clearAttackPanel();
-                        HeroInput = HeroGUI.ACTIVATE;
+                        PlayerInput = PlayerGUI.ACTIVATE;
                     }
                     break;
                 case (PerformAction.WIN):
-                    for(int i = 0; i < HerosInBattle.Count; i++)
+                    for(int i = 0; i < PlayersInBattle.Count; i++)
                     {
-                        HerosInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
+                        PlayersInBattle[i].GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.WAITING;
                     }
                     if (transOn == false)
                     {
@@ -169,26 +169,26 @@ namespace Battle
             }
 
             //Player stages
-            switch (HeroInput)
+            switch (PlayerInput)
             {
-                case (HeroGUI.ACTIVATE):
-                    if(HerosToManage.Count > 0)
+                case (PlayerGUI.ACTIVATE):
+                    if(PlayersToManage.Count > 0)
                     {
-                        HeroChoice = new HandleTurn();
+                        PlayerChoice = new HandleTurn();
                         SelectPanel.SetActive(true);
                         //create button
                         CreateAttackButtons();
-                        HeroInput = HeroGUI.WAITING;
+                        PlayerInput = PlayerGUI.WAITING;
                     }
                     break;
-                case (HeroGUI.WAITING):
+                case (PlayerGUI.WAITING):
                     //idle state
                     break;
-                case (HeroGUI.DONE):
+                case (PlayerGUI.DONE):
                     PlayerInputDone();
                     break;
             }
-
+            checkButtons();
         }
 
         public void CollectActions(HandleTurn input)
@@ -220,37 +220,37 @@ namespace Battle
         //Attack button
         public void Input1()
         {
-            HeroChoice.Attacker = HerosToManage[0].name;
-            HeroChoice.AttackersGameObject = HerosToManage[0];
-            HeroChoice.Type = "Player";
-            HeroChoice.AttackersTarget = EnemysInBattle[0];
-            HeroChoice.choosenAttack = HerosToManage[0].GetComponent<HeroStateMachine>().player.userSkills[0];
+            PlayerChoice.Attacker = PlayersToManage[0].name;
+            PlayerChoice.AttackersGameObject = PlayersToManage[0];
+            PlayerChoice.Type = "Player";
+            PlayerChoice.AttackersTarget = EnemysInBattle[0];
+            PlayerChoice.choosenAttack = PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills[0];
             SelectPanel.SetActive(false);
-            HeroInput = HeroGUI.DONE;
+            PlayerInput = PlayerGUI.DONE;
         }
         
 
         public void Input2(BaseAttack attSkill)//choosen defence action
         {
-            HeroChoice.Attacker = HerosToManage[0].name;
-            HeroChoice.AttackersGameObject = HerosToManage[0];
-            HeroChoice.Type = "Player";
-            HeroChoice.AttackersTarget = EnemysInBattle[0];
-            HeroChoice.choosenAttack = attSkill;
+            PlayerChoice.Attacker = PlayersToManage[0].name;
+            PlayerChoice.AttackersGameObject = PlayersToManage[0];
+            PlayerChoice.Type = "Player";
+            PlayerChoice.AttackersTarget = EnemysInBattle[0];
+            PlayerChoice.choosenAttack = attSkill;
             AttackPanel.SetActive(false);
-            HeroInput = HeroGUI.DONE;
+            PlayerInput = PlayerGUI.DONE;
 
         }
 
         public void Input3(BaseDef defSkill)//choosen defence action
         {
-            HeroChoice.Attacker = HerosToManage[0].name;
-            HeroChoice.AttackersGameObject = HerosToManage[0];
-            HeroChoice.Type = "Player";
-            HeroChoice.AttackersTarget = EnemysInBattle[0];
-            HeroChoice.choosenAttack = defSkill;
+            PlayerChoice.Attacker = PlayersToManage[0].name;
+            PlayerChoice.AttackersGameObject = PlayersToManage[0];
+            PlayerChoice.Type = "Player";
+            PlayerChoice.AttackersTarget = EnemysInBattle[0];
+            PlayerChoice.choosenAttack = defSkill;
             DefendPanel.SetActive(false);
-            HeroInput = HeroGUI.DONE;
+            PlayerInput = PlayerGUI.DONE;
 
         }
 
@@ -267,10 +267,10 @@ namespace Battle
 
         void PlayerInputDone()
         {
-            PerformList.Add(HeroChoice);
+            PerformList.Add(PlayerChoice);
             clearAttackPanel();
-            HerosToManage.RemoveAt(0);
-            HeroInput = HeroGUI.ACTIVATE;
+            PlayersToManage.RemoveAt(0);
+            PlayerInput = PlayerGUI.ACTIVATE;
             
         }
 
@@ -285,7 +285,30 @@ namespace Battle
             }
             attButtons.Clear();
         }
-
+        //check if player has enough stamina to use the skill
+        void checkButtons()
+        {
+            if (attButtons.Count > 0)
+            {
+                for (int i = 0; i < attButtons.Count; i++)
+                {
+                    for (int a = 0; a < PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills.Count; a++) {
+                        if (attButtons[i].gameObject.GetComponent<Button>().GetComponentInChildren<Text>().text == PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills[a].skillName)
+                        {
+                            if(PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills[a].skillCost > PlayersToManage[0].GetComponent<PlayerStateMachine>().player.curStamina)
+                            {
+                                attButtons[i].gameObject.GetComponent<Button>().interactable = false;
+                            }
+                            else
+                            {
+                                attButtons[i].gameObject.GetComponent<Button>().interactable = true;
+                            }
+                        }
+                            
+                    }
+                }
+            }
+        }
         //create action buttons
         void CreateAttackButtons()
         {
@@ -300,9 +323,9 @@ namespace Battle
             AttackButton.transform.SetParent(selectSpacer, false);
             attButtons.Add(AttackButton);
 
-            if(HerosToManage[0].GetComponent<HeroStateMachine>().player.userSkills.Count > 0)
+            if(PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills.Count > 0)
             {       
-                foreach(Stats.Skills skillatk in HerosToManage[0].GetComponent<HeroStateMachine>().player.userSkills)
+                foreach(Stats.Skills skillatk in PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills)
                 {
                     if (skillatk.skillType == "Att")
                     {
@@ -314,7 +337,9 @@ namespace Battle
                         AttButton.transform.SetParent(attackSpacer, false);
                         attButtons.Add(AttButton);
                         attButtonCount++;
+                        
                     }
+                    
                     
 
                 }
@@ -328,16 +353,15 @@ namespace Battle
                 AttackButton.GetComponent<Button>().interactable = false;
             }
             
-            
             GameObject DefendButton = Instantiate(selectButton) as GameObject;
             Text DefendText = DefendButton.transform.Find("Text").gameObject.GetComponent<Text>();
             DefendText.text = "Defend";
             DefendButton.GetComponent<Button>().onClick.AddListener(() => toDefendPanel());
             DefendButton.transform.SetParent(selectSpacer, false);
             attButtons.Add(DefendButton);
-            if (HerosToManage[0].GetComponent<HeroStateMachine>().player.userSkills.Count > 0)
+            if (PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills.Count > 0)
             {
-                foreach (Stats.Skills skilldef in HerosToManage[0].GetComponent<HeroStateMachine>().player.userSkills)
+                foreach (Stats.Skills skilldef in PlayersToManage[0].GetComponent<PlayerStateMachine>().player.userSkills)
                 {
                     if (skilldef.skillType == "Def")
                     {

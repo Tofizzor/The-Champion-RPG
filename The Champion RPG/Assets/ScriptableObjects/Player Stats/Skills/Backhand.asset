@@ -25,5 +25,5 @@ MonoBehaviour:
     amount: 1
   skillType: Att
   skillName: Backhand
-  skillCost: 0
-  attackDamage: 2
+  skillCost: 75
+  attackDamage: 10

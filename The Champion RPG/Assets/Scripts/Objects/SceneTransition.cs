@@ -60,7 +60,7 @@ namespace GameStats
             {
                 if (SceneManager.GetActiveScene().name == "BattleScene")
                 {
-                    alive = collision.GetComponent<Battle.HeroStateMachine>().playerAlive;
+                    alive = collision.GetComponent<Battle.PlayerStateMachine>().playerAlive;
                 }
                 playerStorage.initialValue = playerPosition;
                 StartCoroutine(FadeCo());

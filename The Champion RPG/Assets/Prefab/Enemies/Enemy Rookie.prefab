@@ -160,7 +160,7 @@ MonoBehaviour:
   metDialog: Keep training!
   alreadyMet: {fileID: 11400000, guid: ff3759400b856a14eb5cb6aa4f246b71, type: 2}
   readyForAction: 0
-  defeated: 0
+  defeated: {fileID: 0}
   EnemyTitle: 
   XpGain: 0
   pStats: {fileID: 0}
@@ -181,8 +181,8 @@ MonoBehaviour:
   enemy:
     userName: Enemy
     Level: 1
-    MaxHP: 20
-    CurHP: 20
+    MaxHP: 150
+    CurHP: 150
     maxStamina: 10
     curStamina: 10
     strenght: 2
@@ -196,6 +196,7 @@ MonoBehaviour:
   ShowEnemyHealthBar: {fileID: 3917770530098094563}
   currentState: 0
   attackPlayer: {fileID: 0}
+  defeated: {fileID: 11400000, guid: e1a8df5b3595efb4b921c7cc0fffd818, type: 2}
   lastScene: MainScene
   playerPosition: {x: 8.7, y: -24}
 --- !u!50 &7732723051241883147

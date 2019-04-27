@@ -16,7 +16,7 @@ public class NPC : Interactable
     public string metDialog;
     public BoolValue alreadyMet;
     public bool readyForAction = false;
-    public bool defeated = false;
+    public BoolValue defeated;
 
     [Header("Fighting & XP gain")]
     public string EnemyTitle;
@@ -26,6 +26,7 @@ public class NPC : Interactable
     public bool sceneTransition;
     public GameObject sceneTrans;
 
+    bool battleAccess = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,35 +41,55 @@ public class NPC : Interactable
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.Space) && battleAccess)
+        //{
+        //    if (playerInRange && readyForAction == true && !greetBox.activeSelf && sceneTransition)
+        //    {
+        //        sceneTrans.SetActive(true);
+        //        readyForAction = false;
+        //        GetXP();
+        //    }
+        //    battleAccess = false;
+        //}
         if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
+            battleAccess = true;
             if (dialogBox.activeInHierarchy)
             {
                 dialogBox.SetActive(false);
+                if (battleAccess)
+                {
+                    if (playerInRange && readyForAction == true && !greetBox.activeSelf && sceneTransition)
+                    {
+                        if (!defeated.runTimeValue)
+                        {
+                            sceneTrans.SetActive(true);
+                            GetXP();
+                            readyForAction = false;
+                            battleAccess = false;
+                        }
+                        
+                    }
+                }
             }
             else if (!playerMet)
             {
                 GreetPlayer();
-                greetText.text = greetDialog;
-                readyForAction = true;
+                pStats.gameObject.GetComponent<PlayerMovement>().currentState = PlayerState.interact;
             }
             else
             {
                 RepeatDialog();
-                dialogText.text = metDialog;
             }
         }
-        if (playerInRange && readyForAction == true && !greetBox.activeSelf && sceneTransition)
-        {
-            sceneTrans.SetActive(true);
-            readyForAction = false;
-            GetXP();
-        }
+
 
     }
 
     public void GreetPlayer()
     {
+        greetText.text = greetDialog;
+        readyForAction = true;
         //Dialog Window on
         greetBox.SetActive(true);
         //Player has already interacted with the NPC
@@ -77,7 +98,8 @@ public class NPC : Interactable
     }
 
     public void RepeatDialog()
-    {   
+    {
+        dialogText.text = metDialog;
         //Show dialog box
         dialogBox.SetActive(true);
 
@@ -93,6 +115,7 @@ public class NPC : Interactable
             dialogBox.SetActive(false);
             playerInRange = true;
             Enable();
+            
         }
         
     }

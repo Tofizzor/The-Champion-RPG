@@ -39,7 +39,7 @@ namespace Battle
         private float def_strength = 0;
         //alive
         private bool alive = true;
-
+        public BoolValue defeated;
         public string lastScene;
         public Vector2 playerPosition;
 
@@ -92,6 +92,7 @@ namespace Battle
                             StartCoroutine(enemyDefeated());
                             //enemy is not alive
                             alive = false;
+                            defeated.runTimeValue = !alive;
                             //check alive
                             BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
                         }
@@ -145,17 +146,17 @@ namespace Battle
 
         void ChooseAction()
         {
-            if (BSM.HerosInBattle.Count == 0)
+            if (BSM.PlayersInBattle.Count == 0)
             {
                 currentState = TurnState.WAITING;
             }
-            else if (BSM.HerosInBattle.Count > 0)
+            else if (BSM.PlayersInBattle.Count > 0)
             {
                 HandleTurn myAttack = new HandleTurn();
                 myAttack.Attacker = enemy.userName;
                 myAttack.Type = "Enemy";
                 myAttack.AttackersGameObject = this.gameObject;
-                myAttack.AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
+                myAttack.AttackersTarget = BSM.PlayersInBattle[Random.Range(0, BSM.PlayersInBattle.Count)];
                 int num = Random.Range(0, enemy.userSkills.Count);
                 myAttack.choosenAttack = enemy.userSkills[num];
                 if (myAttack.choosenAttack.skillType == "Att")
@@ -232,7 +233,7 @@ namespace Battle
         void DoDamage()
         { 
             float dmg = enemy.strenght + skillDamage;
-            attackPlayer.GetComponent<HeroStateMachine>().TakeDamage(dmg);
+            attackPlayer.GetComponent<PlayerStateMachine>().TakeDamage(dmg);
             def_strength = 0;
         }
 

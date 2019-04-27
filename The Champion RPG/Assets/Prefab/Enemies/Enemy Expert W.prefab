@@ -159,11 +159,11 @@ MonoBehaviour:
   metDialog: Keep training!
   alreadyMet: {fileID: 11400000, guid: 56a8ccb68fb6bff4a9eddc2187e8a7f5, type: 2}
   readyForAction: 0
-  defeated: 0
+  defeated: {fileID: 11400000, guid: 83f4656c15b8b954fb83e781f90caba2, type: 2}
   EnemyTitle: Expert
   XpGain: 50
   pStats: {fileID: 0}
-  sceneTransition: 0
+  sceneTransition: 1
   sceneTrans: {fileID: 610634429195717650}
 --- !u!114 &1153685919854028562
 MonoBehaviour:
@@ -193,6 +193,7 @@ MonoBehaviour:
   ShowEnemyHealthBar: {fileID: 0}
   currentState: 0
   attackPlayer: {fileID: 0}
+  defeated: {fileID: 0}
   lastScene: 
   playerPosition: {x: 0, y: 0}
 --- !u!1001 &612463658442965350

@@ -23,5 +23,5 @@ MonoBehaviour:
     amount: 2
   skillType: Def
   skillName: Block
-  skillCost: 0
-  defenceStrength: 2
+  skillCost: 75
+  defenceStrength: 8
