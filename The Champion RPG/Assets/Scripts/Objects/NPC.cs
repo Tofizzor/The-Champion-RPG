@@ -88,7 +88,7 @@ public class NPC : Interactable
     {
         if (collision.CompareTag("Player"))
         {
-            GameStats.GameStatus.gameSave.findEnemy = GameObject.FindWithTag("Enemy").gameObject.GetComponent<NPC>();
+            GameStats.GameStatus.gameSave.findEnemy = this.gameObject.GetComponent<NPC>();
             GameStats.GameStatus.gameSave.playerPos = collision.transform.position;
             dialogBox.SetActive(false);
             playerInRange = true;

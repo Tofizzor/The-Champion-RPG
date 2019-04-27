@@ -103,24 +103,7 @@ namespace Battle
 
         private IEnumerator enemyDefeated()
         {
-            //enemy attacks are removed
-            if (BSM.EnemysInBattle.Count > 0)
-            {
-                for (int i = 0; i < BSM.PerformList.Count; i++)
-                {
-                    if (i != 0)
-                    {
-                        if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
-                        {
-                            BSM.PerformList.Remove(BSM.PerformList[i]);
-                        }
-                        if (BSM.PerformList[i].AttackersTarget == this.gameObject)
-                        {
-                            BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
-                        }
-                    }
-                }
-            }
+            
             //remove from battle
             BSM.EnemysInBattle.Remove(this.gameObject);
             //after enemy dies change colour

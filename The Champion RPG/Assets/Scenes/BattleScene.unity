@@ -1795,7 +1795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: House
   playerPosition: {x: 4, y: 2.5}
-  playerStorage: {fileID: 11400000, guid: 25b918ff042b67a4a9ee91fa61f84f16, type: 2}
+  playerStorage: {fileID: 11400000, guid: 68643bf95ee55d94c914cd9eb4cba365, type: 2}
   fadeInPanel: {fileID: 1643819956977876, guid: e8681502c2728df4485f291e9a146164,
     type: 3}
   fadeOutPanel: {fileID: 1481049243066850, guid: 9f20b37b3f73b8d43bac552b8b80dc63,

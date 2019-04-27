@@ -448,7 +448,7 @@ MonoBehaviour:
     CurHP: 200
     maxStamina: 10
     curStamina: 10
-    strenght: 5
+    strenght: 50
     fighting: 4
     agility: 4
     userSkills:

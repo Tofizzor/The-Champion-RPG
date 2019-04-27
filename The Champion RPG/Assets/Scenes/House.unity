@@ -1572,7 +1572,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startingPosition
       value: 
-      objectReference: {fileID: 11400000, guid: 25b918ff042b67a4a9ee91fa61f84f16,
+      objectReference: {fileID: 11400000, guid: 68643bf95ee55d94c914cd9eb4cba365,
         type: 2}
     - target: {fileID: 114851768064356930, guid: abb1d19dae0f99a45b303c0fa39c2b29,
         type: 3}

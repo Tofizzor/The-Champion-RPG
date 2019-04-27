@@ -22,7 +22,7 @@ namespace Battle{
 
         public TurnState currentState;
         //bool of player to see if they are alive
-        private bool alive = true;
+        public bool playerAlive = true;
         //variables for progress bar
         private float curCooldown;
         private float maxCooldown = 2f;
@@ -77,7 +77,7 @@ namespace Battle{
                 break;
 
             case (TurnState.DEAD):
-                    if (!alive)
+                    if (!playerAlive)
                     {
                         return;
                     }
@@ -85,7 +85,7 @@ namespace Battle{
                     {
                         playerDefeated();
                         BSM.battleStates = BattleStateMachine.PerformAction.CHECKALIVE;
-                        alive = false;
+                        playerAlive = false;
                     }
                 break;
         }
@@ -167,27 +167,6 @@ namespace Battle{
             BSM.HerosInBattle.Remove(this.gameObject);
             BSM.HerosToManage.Remove(this.gameObject);
             BSM.SelectPanel.SetActive(false);
-            //check if there is player or allies in the battle
-            if (BSM.HerosInBattle.Count > 0)
-            {   
-                //go through the list
-                for (int i = 0; i < BSM.PerformList.Count; i++)
-                {
-                    if(i != 0)
-                    {
-                        //remove the object from the perfrom list
-                        if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
-                        {
-                            BSM.PerformList.Remove(BSM.PerformList[i]);
-                        }
-                        //attack any random player or ally of the player
-                        if (BSM.PerformList[i].AttackersTarget == this.gameObject)
-                        {
-                            BSM.PerformList[i].AttackersTarget = BSM.HerosInBattle[Random.Range(0, BSM.HerosInBattle.Count)];
-                        }
-                    }
-                }
-            }
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(225,0,0,255);
             //wait for a moment
             //yield return new WaitForSeconds(0.5f);

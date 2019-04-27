@@ -12,6 +12,7 @@ namespace GameStats
         public string sceneToLoad;
         public Vector2 playerPosition;
         public VectorValue playerStorage;
+        private bool alive;
         //public VectorValue cameraMin;
         //public VectorValue cameraMax;
 
@@ -33,22 +34,52 @@ namespace GameStats
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player") && !collision.isTrigger)
+            
+            /*
+                if (collision.CompareTag("Player") && SceneManager.GetActiveScene().name == "BattleScene")
             {
-                playerStorage.initialValue = playerPosition;
-                StartCoroutine(FadeCo());
-                if (SceneManager.GetActiveScene().name == "BattleScene")
+                if (collision.GetComponent<Battle.HeroStateMachine>().playerAlive)
                 {
                     playerStorage.initialValue = GameStats.GameStatus.gameSave.playerPos;
+                    Debug.Log("Stayed alive");
+
                 }
-                //SceneManager.LoadScene(sceneToLoad);
             }
             if (SceneManager.GetActiveScene().name == "BattleScene" && collision.CompareTag("Enemy"))
             {
-                sceneToLoad = collision.GetComponent<Battle.EnemyStateMachine>().lastScene;
-                //playerStorage.initialValue = GameStats.GameStatus.gameSave.playerPos;
-
+                if (collision.GetComponent<Battle.EnemyStateMachine>().currentState == Battle.EnemyStateMachine.TurnState.DEAD)
+                {
+                    Debug.Log("Enemy is Dead");
+                    sceneToLoad = collision.GetComponent<Battle.EnemyStateMachine>().lastScene;
+                    //playerStorage.initialValue = GameStats.GameStatus.gameSave.playerPos;
+                }
             }
+            */
+
+            if (collision.CompareTag("Player") && !collision.isTrigger)
+            {
+                if (SceneManager.GetActiveScene().name == "BattleScene")
+                {
+                    alive = collision.GetComponent<Battle.HeroStateMachine>().playerAlive;
+                }
+                playerStorage.initialValue = playerPosition;
+                StartCoroutine(FadeCo());
+                SceneManager.LoadScene(sceneToLoad);
+            }
+            if (SceneManager.GetActiveScene().name == "BattleScene" && alive)
+            {
+                    if (collision.CompareTag("Player"))
+                    {
+                        playerStorage.initialValue = GameStats.GameStatus.gameSave.playerPos;
+                    }
+                    if (collision.CompareTag("Enemy"))
+                    {
+                        sceneToLoad = collision.GetComponent<Battle.EnemyStateMachine>().lastScene;
+                        StartCoroutine(FadeCo());
+                        SceneManager.LoadScene(sceneToLoad);
+                    }
+            }
+
 
         }
 

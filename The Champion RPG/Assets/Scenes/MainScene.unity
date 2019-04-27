@@ -8316,6 +8316,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 68643bf95ee55d94c914cd9eb4cba365,
         type: 2}
+    - target: {fileID: 114593743989212812, guid: e9bab50e868cdd74e9ee81cde9c3bbf3,
+        type: 3}
+      propertyPath: playerPosition.y
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 870603631, guid: e9bab50e868cdd74e9ee81cde9c3bbf3, type: 3}
       propertyPath: m_Sprite
       value: 
