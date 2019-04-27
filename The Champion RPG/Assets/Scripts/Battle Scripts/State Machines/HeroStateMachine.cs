@@ -57,11 +57,11 @@ namespace Battle{
     // Update is called once per frame
     void Update()
     {
-        UpgradeHealthBar();
+        UpdateHealthBar();
         switch (currentState)
         {
             case (TurnState.PROCESSING):
-                UpgradeProgressBar();
+                UpdateProgressBar();
                 break;
 
             case (TurnState.ADDTOLIST):
@@ -92,8 +92,8 @@ namespace Battle{
             //check if player is defending
             userDefending(def_strength);
     }
-
-    void UpgradeProgressBar()
+    
+    void UpdateProgressBar()
     {
         curCooldown = curCooldown + Time.deltaTime;
         float calcCooldown = curCooldown / maxCooldown;
@@ -103,7 +103,8 @@ namespace Battle{
             currentState = TurnState.ADDTOLIST;
         }
     }
-        void UpgradeHealthBar()
+
+        void UpdateHealthBar()
         {
 
             float healthBar = player.CurHP / player.MaxHP;
@@ -111,6 +112,7 @@ namespace Battle{
             
         }
 
+        //movement to the enemy and damage after some time
         private IEnumerator TimeForAction()
         {
             if (actionStarted)
@@ -118,6 +120,7 @@ namespace Battle{
                 yield break;
             }
             actionStarted = true;
+            //perfrom defence skill if skill type is Att
             if (BSM.PerformList[0].choosenAttack.skillType == "Att")
             {
                 //enemy movement to the player
@@ -132,6 +135,7 @@ namespace Battle{
             
                 DoDamage();
             }
+            //perfrom defence skill if skill type is Def
             else if(BSM.PerformList[0].choosenAttack.skillType == "Def")
             {
                 DoDefence();
@@ -215,6 +219,7 @@ namespace Battle{
                 def_strength = 0;
         }
 
+        //do defence
         public void DoDefence()
         {
             BaseDef deff = (BaseDef)BSM.PerformList[0].choosenAttack;
